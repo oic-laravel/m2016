@@ -27,7 +27,16 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td>バーコードリーダー</td><td>ｂ4029</td><td>5日</td><td>3日</td>
+                    
+                     {{-- Bladeでforeach構文 --}}
+                    
+                     @foreach($持ってきた配列 as list($1,$2,$3,$4))
+                    
+                     {{ <td>$1</td><td>$2</td><td>$3</td><td>$4</td> }}
+                    
+                     @endforeach
+
+
                         <td>
                             <a href="" class="btn btn-primary btn-xs">メール送信</a>
                             <a href="" class="btn btn-primary btn-xs">削除</a>
