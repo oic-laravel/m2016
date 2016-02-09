@@ -13,9 +13,11 @@
 
 
 Route::get('/', function () {
-    return view('gridview');
+    return view('welcome');
 });
-
+Route::get('/gridview', function() {
+	return view('gridview');
+});
 
 /*
 |--------------------------------------------------------------------------
