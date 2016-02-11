@@ -16,11 +16,9 @@ use Illuminate\Support\Facades\Input;
 Route::get('/', function () {
     return view('welcome');
 });
-
 Route::get('/welcome', function () {
     return view('welcome');
 });
-
 Route::get('/lendhistory', 'lendhistoryController@index');
 
 Route::post('/', function() {

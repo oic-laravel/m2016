@@ -11,7 +11,7 @@
         <div class="container">
             <div class="navbar-header">
                 <a class="navbar-brand" href="/welcome">貸し出しシステム</a>
-                <a class="navbar-brand" href="/gridview">在庫管理画面</a>
+                <a class="navbar-brand" href="/lendhistory">貸出履歴</a>
             </div>
         </div>
     </nav>
