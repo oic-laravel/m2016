@@ -6,7 +6,7 @@ namespace App\Http\Controllers;
 class WelcomeController extends Controller {
  
 	/**
-	 * Create a new controller instance.
+	 * 新しいコントローラーインスタンスの生成
 	 *
 	 * @return void
 	 */
@@ -16,7 +16,7 @@ class WelcomeController extends Controller {
 	}
  
 	/**
-	 * Show the application welcome screen to the user.
+	 * アプリケーションのウェルカムページをユーザーへ表示
 	 *
 	 * @return Response
 	 */
