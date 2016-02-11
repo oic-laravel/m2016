@@ -11,7 +11,12 @@ use Illuminate\Support\Facades\Input;
 | されたときに呼び出されるコントローラーを指定してください。
 |
 */
-
+/*Route::post('/registration', function() {
+	//$student_number = Input::get('student-number');
+	//return Input::all();//"student_number : {$student_number}";
+	//return DB::select('select * from student');
+	return view('registration');
+});*/
 
 Route::get('/', function () {
     return view('welcome');
@@ -23,11 +28,7 @@ Route::get('/welcome', function () {
 
 Route::get('/lendhistory', 'lendhistoryController@index');
 
-Route::post('/', function() {
-	//$student_number = Input::get('student-number');
-	//return Input::all();//"student_number : {$student_number}";
-	return DB::select('select * from student');
-});
+Route::post('/registration', 'RegistrationController@index');
 
 /*
 |--------------------------------------------------------------------------
