@@ -3,17 +3,34 @@
 namespace App\Http\Controllers;
 use DB;
 use BaseController;
+use View;
 
 
 class lendhistoryController extends Controller {
  
-	public function index()
+	public function show()
 	{
-		$data = [];
-        $data["item_name"] =  "BarcodeReader" ;    
-        $data["student_number"] = "B4123";
-		$data["complete_flug"] = "OK";
-		return view('lendhistory',$data);
+
+ 		$rentals = DB::select('select * from rental');
+ 		
+
+        return view('lendhistory',rentals);
+
+
+                //return View::make('lendhistory')->with('rentals',$rentals //[
+                //['item_name' => 'item_id','student_number' => 'student_id','complete_flug' => 'completed'],
+
+        //]
+        //);
+
+		//return View::make('lendhistory')->with('rental', rental::get());
+
+
+        /*<ul class="rentals">
+        @foreach($rentals as $rental)
+        <td>{{$rental['item_name']}}</td><td>{{$rental['student_number']}}</td><td>{{$rental['complete_flug']}}</td> 
+        @endforeach
+        </ul>*/
 	}
  
 }

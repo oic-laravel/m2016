@@ -26,7 +26,7 @@ Route::get('/welcome', function () {
     return view('welcome');
 });
 
-Route::get('/lendhistory', 'lendhistoryController@index');
+Route::get('/lendhistory', 'lendhistoryController@show');
 
 Route::post('/registration', 'RegistrationController@index');
 

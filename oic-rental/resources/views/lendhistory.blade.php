@@ -34,12 +34,15 @@
         <tbody>
           <tr>
 
+        <ul class="rentals">
+        @foreach($rentals as $rental)
+        <td>{{$rental['item_name']}}</td><td>{{$rental['student_number']}}</td><td>{{$rental['complete_flug']}}</td> 
+        @endforeach
+        </ul>
+
+
+
           
-
-           <td><?= $item_name ?></td><td><?= $student_number ?></td><td><?= $complete_flug ?></td>
-
-           
-
 
            <td>
             <a href="" class="btn btn-primary btn-xs">メール送信</a>
