@@ -25,7 +25,8 @@ Route::get('/gridview', function() {
 
 Route::post('/', function() {
 	//$student_number = Input::get('student-number');
-	return Input::all();//"student_number : {$student_number}";
+	//return Input::all();//"student_number : {$student_number}";
+	return DB::select('select * from student');
 });
 
 /*
