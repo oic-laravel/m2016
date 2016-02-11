@@ -36,7 +36,7 @@
 
         <ul class="rentals">
         @foreach($rentals as $rental)
-        <td>{{$rental['item_name']}}</td><td>{{$rental['student_number']}}</td><td>{{$rental['complete_flug']}}</td> 
+        <td>{{$rental["item_id"]}}</td><td>{{$rental["student_id"]}}</td><td>{{$rental["completed"]}}</td> 
         @endforeach
         </ul>
 

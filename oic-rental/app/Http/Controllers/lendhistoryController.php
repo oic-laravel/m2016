@@ -11,7 +11,7 @@ class lendhistoryController extends Controller {
 	public function show()
 	{
 
- 		$rentals = DB::select('select * from rental');
+ 		$rentals['rentals'] = DB::select('select * from rental');
  		
 
         return view('lendhistory',rentals);
