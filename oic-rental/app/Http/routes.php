@@ -28,7 +28,7 @@ Route::get('/welcome', function () {
 
 Route::get('/lendhistory', 'lendhistoryController@show');
 
-Route::post('/registration', 'RegistrationController@index');
+Route::post('/registration', 'RegistrationController@store');
 
 /*
 |--------------------------------------------------------------------------
