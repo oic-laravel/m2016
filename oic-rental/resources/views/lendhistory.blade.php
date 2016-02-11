@@ -36,28 +36,24 @@
 
         <ul class="rentals">
 
+
         @foreach($lendhistory as $row)
         <tr>
-        <td>{{ $row->rental_id }}</td>
-        <td>{{ $row->student_id }}</td>
-        <td>{{ $row->item_id }}</td>
-        <td>{{ $row->quantity }}</td>
-        <td>{{ $row->rental_date }}</td>
-        <td>{{ $row->plan_date }}</td>
-        <td>{{ $row->return_date }}</td>
+        <td>{{ $row->item_name}}</td>
+        <td>{{ $row->student_number }}</td>
         <td>{{ $row->completed }}</td>
+            <td>
+            <a href="" class="btn btn-primary btn-xs">メール送信</a>
+            <a href="" class="btn btn-primary btn-xs">削除</a>
+          </td>
         </tr>
-
         @endforeach
 
 
 
           
 
-           <td>
-            <a href="" class="btn btn-primary btn-xs">メール送信</a>
-            <a href="" class="btn btn-primary btn-xs">削除</a>
-          </td>
+ 
         </tr>
       </tbody>
     </table>
