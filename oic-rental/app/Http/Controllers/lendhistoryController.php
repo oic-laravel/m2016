@@ -11,17 +11,8 @@ class lendhistoryController extends Controller {
 	public function show()
 	{
 
-<<<<<<< HEAD
- 		$rentals['rentals'] = DB::select('select * from rental');
- 		
-
-        return view('lendhistory',rentals);
-
-
-=======
         $data['lendhistory']=DB::table('rental')->get();
         return View::make('lendhistory',$data);
->>>>>>> b8eb2d5639be4d1002d7f9d971516ee9d396425e
                 //return View::make('lendhistory')->with('rentals',$rentals //[
                 //['item_name' => 'item_id','student_number' => 'student_id','complete_flug' => 'completed'],
 
