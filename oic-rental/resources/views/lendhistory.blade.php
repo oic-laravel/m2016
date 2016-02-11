@@ -9,7 +9,7 @@
       <nav class="navbar navbar-inverse navbar-static-top navbar-fixed">
         <div class="container">
             <div class="navbar-header">
-                <a class="navbar-brand" href="/welcome">貸し出しシステム</a>
+                <a class="navbar-brand" href="/welcome">貸出システム</a>
                 <a class="navbar-brand" href="/lendhistory">貸出履歴</a>
             </div>
         </div>
@@ -49,7 +49,7 @@
         </tr>
         @endforeach
 
-
+        </ul>
 
           
 
