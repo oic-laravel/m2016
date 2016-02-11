@@ -1,4 +1,5 @@
 <?php
+use Illuminate\Support\Facades\Input;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,6 +18,11 @@ Route::get('/', function () {
 });
 Route::get('/gridview', function() {
 	return view('gridview');
+});
+
+Route::post('/', function() {
+	//$student_number = Input::get('student-number');
+	return Input::all();//"student_number : {$student_number}";
 });
 
 /*

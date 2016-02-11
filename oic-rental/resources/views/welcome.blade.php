@@ -17,17 +17,17 @@
   </header>
   <div class="container" style="margin-top:100px; padding:20px 0;">
     <h1 class="text-center">登録フォーム</h1>
-    <form class="form-horizontal col-md-4 col-md-offset-4" action="" method="POST">
+    <form class="form-horizontal col-md-4 col-md-offset-4" action="/" method="POST">
       <div class="form-group">
         <label class="control-label" for="student-number">学籍番号</label>
         <div >
-          <input type="text" id="student-number" class="form-control">
+          <input type="text" id="student-number" name="student-number" class="form-control">
         </div>
       </div>
       <div class="form-group">
         <label class="control-label" for="loan-number">貸し出し番号</label>
         <div>
-          <input type="password" id="loan-number" class="form-control">
+          <input type="password" id="loan-number" name="loan-number" class="form-control">
         </div>
       </div>
       <div class="form-group">
