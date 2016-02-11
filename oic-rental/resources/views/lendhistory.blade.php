@@ -35,10 +35,20 @@
           <tr>
 
         <ul class="rentals">
-        @foreach($rentals as $rental)
-        <td>{{$rental["item_id"]}}</td><td>{{$rental["student_id"]}}</td><td>{{$rental["completed"]}}</td> 
+
+        @foreach($lendhistory as $row)
+        <tr>
+        <td>{{ $row->rental_id }}</td>
+        <td>{{ $row->student_id }}</td>
+        <td>{{ $row->item_id }}</td>
+        <td>{{ $row->quantity }}</td>
+        <td>{{ $row->rental_date }}</td>
+        <td>{{ $row->plan_date }}</td>
+        <td>{{ $row->return_date }}</td>
+        <td>{{ $row->completed }}</td>
+        </tr>
+
         @endforeach
-        </ul>
 
 
 
