@@ -9,9 +9,10 @@ class lendhistoryController extends Controller {
  
 	public function index()
 	{
-        $data1["item_name"] =  "BarcodeReader"       
-        $data2["student_number"] = "B4123";
-		$data3["complete_flug"] = "OK";
+		$data = [];
+        $data["item_name"] =  "BarcodeReader" ;    
+        $data["student_number"] = "B4123";
+		$data["complete_flug"] = "OK";
 		return view('lendhistory',$data);
 	}
  
