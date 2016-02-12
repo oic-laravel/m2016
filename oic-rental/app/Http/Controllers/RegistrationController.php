@@ -1,5 +1,12 @@
 <?php
 
+/**
+     * welcome.blade -> registration.blade
+     * URI : POST /
+     * author :hide
+     * @return array
+     */
+
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;

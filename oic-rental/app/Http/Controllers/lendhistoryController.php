@@ -1,4 +1,10 @@
 <?php
+/**
+     * welcome.blade -> lendhistory.blade
+     * URI : GET /
+     * author :hisashi
+     * @return array
+     */
 
 namespace App\Http\Controllers;
 use DB;

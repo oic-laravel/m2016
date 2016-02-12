@@ -26,8 +26,8 @@ Route::get('/welcome', function () {
     return view('welcome');
 });
 
-Route::get('/item_registration', function () {
-    return view('item_registration');
+Route::get('/item_registration_form', function () {
+    return view('item_registration_form');
 });
 
 Route::get('/lendhistory', 'lendhistoryController@show');
