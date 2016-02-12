@@ -26,6 +26,10 @@ Route::get('/index', function () {
     return view('/index');
 });
 
+Route::get('/student_registration_form', 'UserController@showStudentForm');
+
+Route::post('/student_registration', 'UserController@storeStudent');
+
 
 
 Route::get('/item_registration_form', 'UserController@showItem');

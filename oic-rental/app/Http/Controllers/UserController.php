@@ -94,4 +94,46 @@ class UserController extends Controller
             @endforeach
         </ul>*/
     }
+
+
+    /**
+    * 生徒登録
+    *
+    * URI : GET /student_regi
+    * @author hisashi
+    * @return array
+    */
+        public function showStudentForm()
+    {
+
+        $departments['departments'] = DB::table('department')->get();
+        $teachers['teachers'] = DB::table('teacher')->get();
+        // view関数の第２引数に配列を渡す
+        return view('student_registration_form', $departments,$teachers);
+    }
+
+        public function storeStudent()
+    {
+
+
+        $student_number = Input::get('student-number');
+        $department_id = Input::get('department');
+        $teacher_id = Input::get('teacher');
+        $student_name = Input::get('student-name');
+    
+
+
+        //Trying to get property of non-object yet...
+        DB::table('student')->insert(
+            ['student_number' => $student_number,
+             'department_id' => $department_id,
+             'teacher_id' => $teacher_id,
+             'student_name' => $student_name,
+             'student_email' => $student_number.'@oic.jp'
+             ]
+        );
+        // view関数の第２引数に配列を渡す
+        return view('student_registration');
+    }
+
 }
