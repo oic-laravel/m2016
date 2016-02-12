@@ -25,8 +25,8 @@ class RegistrationController extends Controller
 		$item_number = Input::get('loan-number');
 		$data = [];
 
- 		$student = DB::table('student')->where('student_number', $student_number)->first();
- 		$item = DB::table('item')->where('item_number', $item_number)->first();
+ 		$student = DB::table('student')->where('student_number', '=', $student_number)->first();
+ 		$item = DB::table('item')->where('item_number', '=', $item_number)->first();
  		$data["student_number"] = $student->student_number;
  		$data["item_name"] = $item->item_name;
  		//Trying to get property of non-object yet...
