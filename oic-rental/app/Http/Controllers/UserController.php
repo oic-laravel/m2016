@@ -3,22 +3,20 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-
 use DB;
+use View;
 use BaseController;
-
 use Illuminate\Support\Facades\Input;
 
-class RegistrationController extends Controller
+class UserController extends Controller
 {
     /**
     * アイテム貸出
     *
     * URI : GET /registation
-    * @author :hide
+    * @author hide
     * @return array
     */
     public function store()
@@ -48,4 +46,36 @@ class RegistrationController extends Controller
         // view関数の第２引数に配列を渡す
     	return view('registration', $data);
 	}
+
+    /**
+    * 貸出履歴表示
+    *
+    * URI : GET /lendhistory
+    * @author hisashi
+    * @return array
+    */
+    public function show()
+    {
+
+        $data['lendhistory']=DB::table('rental')
+        ->join('item', 'rental.item_id', '=', 'item.item_id')
+        ->join('student', 'rental.student_id', '=', 'student.student_id')
+        ->select('item.item_name', 'student.student_number','rental.completed')
+        ->get();
+        return View::make('lendhistory',$data);
+        //return View::make('lendhistory')->with('rentals',$rentals //[
+        //['item_name' => 'item_id','student_number' => 'student_id','complete_flug' => 'completed'],
+
+            //]
+            //);
+
+            //return View::make('lendhistory')->with('rental', rental::get());
+
+            //table('rental')->get();
+            /*<ul class="rentals">
+            @foreach($rentals as $rental)
+            <td>{{$rental['item_name']}}</td><td>{{$rental['student_number']}}</td><td>{{$rental['complete_flug']}}</td> 
+            @endforeach
+        </ul>*/
+    }
 }
