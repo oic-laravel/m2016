@@ -23,9 +23,11 @@
       <div class="form-group">
         <label class="control-label">Existing Item</label>
         <div>
+        @foreach($itemName as $row)
           <select name="item" id="exist-item" class="form-control">
-            <option value="1">1</option>
+            <option value={{ $row->item_name }}>{{ $row->item_name }}</option>
           </select>
+        @endforeach
         </div>
       </div>
       <div class="form-group">

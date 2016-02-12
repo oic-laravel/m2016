@@ -26,9 +26,9 @@ Route::get('/index', function () {
     return view('/index');
 });
 
-Route::get('/item_registration_form', function () {
-    return view('item_registration_form');
-});
+
+
+Route::get('/item_registration_form', 'UserController@showItem');
 
 Route::get('/lendhistory', 'UserController@showHistory');
 

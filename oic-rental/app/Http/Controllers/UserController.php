@@ -48,6 +48,21 @@ class UserController extends Controller
 	}
 
     /**
+    * アイテム貸出
+    *
+    * URI : GET /registation
+    * @author hide
+    * @return array
+    */
+    public function showItem()
+    {
+        $data['itemName']=DB::table('item')
+        ->select('item.item_name')
+        ->get();
+        return view('/item_registration_form',$data);
+    }
+
+    /**
     * 貸出履歴表示
     *
     * URI : GET /lendhistory
