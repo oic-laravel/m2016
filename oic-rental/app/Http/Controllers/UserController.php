@@ -19,7 +19,7 @@ class UserController extends Controller
     * @author hide
     * @return array
     */
-    public function store()
+    public function storeRental()
 	{
 		date_default_timezone_set('Asia/Tokyo');
 		$today = date("Y/m/d");
@@ -54,7 +54,7 @@ class UserController extends Controller
     * @author hisashi
     * @return array
     */
-    public function show()
+    public function showHistory()
     {
 
         $data['lendhistory']=DB::table('rental')

@@ -30,9 +30,9 @@ Route::get('/item_registration_form', function () {
     return view('item_registration_form');
 });
 
-Route::get('/lendhistory', 'UserController@show');
+Route::get('/lendhistory', 'UserController@showHistory');
 
-Route::post('/registration', 'UserController@store');
+Route::post('/registration', 'UserController@storeRental');
 
 /*
 |--------------------------------------------------------------------------
