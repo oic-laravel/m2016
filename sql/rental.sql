@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: 2016 年 2 月 12 日 22:56
+-- Generation Time: 2016 年 2 月 12 日 23:07
 -- サーバのバージョン： 5.6.28-0ubuntu0.15.10.1
 -- PHP Version: 5.6.11-1ubuntu3.1
 
@@ -46,10 +46,17 @@ INSERT INTO `department` (`department_id`, `department_name`) VALUES
 
 CREATE TABLE IF NOT EXISTS `item` (
   `item_id` int(4) NOT NULL COMMENT 'item id',
-  `item_number` varchar(8) NOT NULL COMMENT 'item number (P-01)',
+  `item_number` varchar(100) NOT NULL COMMENT 'item number (P-01)',
   `item_name` varchar(100) NOT NULL COMMENT 'item name',
   `remarks` varchar(200) NOT NULL COMMENT 'remarks'
-) ENGINE=InnoDB AUTO_INCREMENT=102 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=105 DEFAULT CHARSET=utf8;
+
+--
+-- テーブルのデータのダンプ `item`
+--
+
+INSERT INTO `item` (`item_id`, `item_number`, `item_name`, `remarks`) VALUES
+(104, 'pentab-104', 'pentab', '''pentab'' + ''-'' + ''item_id''');
 
 -- --------------------------------------------------------
 
@@ -65,7 +72,14 @@ CREATE TABLE IF NOT EXISTS `rental` (
   `plan_date` date NOT NULL COMMENT 'return plan date',
   `return_date` date NOT NULL COMMENT 'return date',
   `completed` tinyint(1) NOT NULL COMMENT 'completed (ok or no)'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+--
+-- テーブルのデータのダンプ `rental`
+--
+
+INSERT INTO `rental` (`rental_id`, `student_id`, `item_id`, `rental_date`, `plan_date`, `return_date`, `completed`) VALUES
+(1, 1, 104, '2016-02-01', '2016-02-08', '2016-02-07', 0);
 
 -- --------------------------------------------------------
 
@@ -363,12 +377,12 @@ ALTER TABLE `department`
 -- AUTO_INCREMENT for table `item`
 --
 ALTER TABLE `item`
-  MODIFY `item_id` int(4) NOT NULL AUTO_INCREMENT COMMENT 'item id',AUTO_INCREMENT=102;
+  MODIFY `item_id` int(4) NOT NULL AUTO_INCREMENT COMMENT 'item id',AUTO_INCREMENT=105;
 --
 -- AUTO_INCREMENT for table `rental`
 --
 ALTER TABLE `rental`
-  MODIFY `rental_id` int(8) NOT NULL AUTO_INCREMENT COMMENT 'rental id (pk)';
+  MODIFY `rental_id` int(8) NOT NULL AUTO_INCREMENT COMMENT 'rental id (pk)',AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `student`
 --
