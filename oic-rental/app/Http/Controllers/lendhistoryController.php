@@ -10,8 +10,8 @@ class lendhistoryController extends Controller {
  
     /**
     * 貸出履歴表示
-    * welcome.blade -> lendhistory.blade
-    * URI : GET /
+    *
+    * URI : GET /lendhistory
     * @author :hisashi
     * @return array
     */

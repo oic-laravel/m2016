@@ -16,8 +16,8 @@ class RegistrationController extends Controller
 {
     /**
     * アイテム貸出
-    * welcome.blade -> registration.blade
-    * URI : POST /
+    *
+    * URI : GET /registation
     * @author :hide
     * @return array
     */
