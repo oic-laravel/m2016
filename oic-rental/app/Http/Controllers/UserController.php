@@ -63,6 +63,50 @@ class UserController extends Controller
 	}
 
     /**
+    * insert item name to pullbox
+    *
+    * URI : GET /item_registration_form
+    * @author hide
+    * @return array
+    */
+    public function showItem()
+    {
+        $data['itemName']=DB::table('item')
+        ->select('item.item_name')
+        ->distinct()
+        ->get();
+        return view('/item_registration_form',$data);
+    }
+
+    /**
+    * insert item to database
+    *
+    * URI : POST /item_registration
+    * @author hide
+    * @return array
+    */
+    public function storeItem()
+    {
+        DB::table('item')->insert(
+            ['item_name' => Input::get('item'),
+             'remarks' => "test"
+             ]);
+
+        $id = DB::getPdo()->lastInsertId();
+
+        DB::table('item')
+        ->where('item_id', $id)
+        ->update(['item_number' => Input::get('item').'-'.$id]);
+        
+        $data['item']=DB::table('item')
+        ->select('item_number','item_name')
+        ->where('item_id', $id)
+        ->get();
+
+        return view('/item_completed',$data);
+    }
+
+    /**
     * 貸出履歴表示
     *
     * URI : GET /lendhistory

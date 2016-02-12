@@ -18,38 +18,11 @@
     </nav>
   </header>
   <div class="container" style="margin-top:100px; padding:20px 0;">
-    <h1 class="text-center">rental item regi</h1>
-    <form class="form-horizontal col-md-4 col-md-offset-4" action="/item_registration" method="POST">
-      <div class="form-group">
-        <label class="control-label">Existing Item</label>
-        <div>
-          <select name="item" id="exist-item" class="form-control">
-            @foreach($itemName as $row)
-            <option value={{ $row->item_name }}>{{ $row->item_name }}</option>
-            @endforeach
-          </select>
-        </div>
-      </div>
-      <div class="form-group">
-        <div class="col-md-offset-4 col-md-4">
-          <button type="submit" class="btn btn-primary btn-block">登録</button>
-        </div>
-      </div>
-    </form>
-
-    <form class="form-horizontal col-md-4 col-md-offset-4" action="/item_registration" method="POST">
-      <div class="form-group">
-        <label class="control-label">New Item</label>
-        <div>
-          <input type="text" id="new-item" name="item" class="form-control">
-        </div>
-      </div>
-      <div class="form-group">
-        <div class="col-md-offset-4 col-md-4">
-          <button type="submit" class="btn btn-primary btn-block">登録</button>
-        </div>
-      </div>
-    </form>
+    <h1 class="text-center">completed item registration</h1>
+    @foreach($item as $row)
+    item_number : {{ $row->item_number }}<br>
+    item_name   : {{ $row->item_name }}
+    @endforeach
   </div>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha256-KXn5puMvxCw+dAYznun+drMdG1IFl3agK0p/pqT9KAo= sha512-2e8qq0ETcfWRI4HJBzQiA3UoyFk6tbNyG+qSaIBZLyW9Xf3sWZHN/lxe9fTh1U45DpPf07yj94KsUHHWe4Yk1A==" crossorigin="anonymous"></script>
 </body>

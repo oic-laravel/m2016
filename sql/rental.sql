@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: 2016 年 2 月 12 日 23:07
+-- Generation Time: 2016 年 2 月 13 日 01:54
 -- サーバのバージョン： 5.6.28-0ubuntu0.15.10.1
 -- PHP Version: 5.6.11-1ubuntu3.1
 
@@ -49,14 +49,15 @@ CREATE TABLE IF NOT EXISTS `item` (
   `item_number` varchar(100) NOT NULL COMMENT 'item number (P-01)',
   `item_name` varchar(100) NOT NULL COMMENT 'item name',
   `remarks` varchar(200) NOT NULL COMMENT 'remarks'
-) ENGINE=InnoDB AUTO_INCREMENT=105 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=106 DEFAULT CHARSET=utf8;
 
 --
 -- テーブルのデータのダンプ `item`
 --
 
 INSERT INTO `item` (`item_id`, `item_number`, `item_name`, `remarks`) VALUES
-(104, 'pentab-104', 'pentab', '''pentab'' + ''-'' + ''item_id''');
+(104, 'pentab-104', 'pentab', '''pentab'' + ''-'' + ''item_id'''),
+(105, 'camera-105', 'camera', 'camera');
 
 -- --------------------------------------------------------
 
@@ -72,14 +73,20 @@ CREATE TABLE IF NOT EXISTS `rental` (
   `plan_date` date NOT NULL COMMENT 'return plan date',
   `return_date` date NOT NULL COMMENT 'return date',
   `completed` tinyint(1) NOT NULL COMMENT 'completed (ok or no)'
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 --
 -- テーブルのデータのダンプ `rental`
 --
 
 INSERT INTO `rental` (`rental_id`, `student_id`, `item_id`, `rental_date`, `plan_date`, `return_date`, `completed`) VALUES
-(1, 1, 104, '2016-02-01', '2016-02-08', '2016-02-07', 0);
+(1, 1, 104, '2016-02-01', '2016-02-08', '2016-02-07', 0),
+(2, 1, 104, '2016-02-12', '2016-02-19', '0000-00-00', 0),
+(3, 1, 104, '2016-02-13', '2016-02-20', '0000-00-00', 0),
+(4, 1, 104, '2016-02-13', '2016-02-20', '0000-00-00', 0),
+(5, 1, 105, '2016-02-13', '2016-02-20', '0000-00-00', 0),
+(6, 1, 105, '2016-02-13', '2016-02-20', '0000-00-00', 0),
+(7, 1, 105, '2016-02-13', '2016-02-20', '0000-00-00', 0);
 
 -- --------------------------------------------------------
 
@@ -377,12 +384,12 @@ ALTER TABLE `department`
 -- AUTO_INCREMENT for table `item`
 --
 ALTER TABLE `item`
-  MODIFY `item_id` int(4) NOT NULL AUTO_INCREMENT COMMENT 'item id',AUTO_INCREMENT=105;
+  MODIFY `item_id` int(4) NOT NULL AUTO_INCREMENT COMMENT 'item id',AUTO_INCREMENT=106;
 --
 -- AUTO_INCREMENT for table `rental`
 --
 ALTER TABLE `rental`
-  MODIFY `rental_id` int(8) NOT NULL AUTO_INCREMENT COMMENT 'rental id (pk)',AUTO_INCREMENT=2;
+  MODIFY `rental_id` int(8) NOT NULL AUTO_INCREMENT COMMENT 'rental id (pk)',AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `student`
 --
