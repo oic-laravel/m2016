@@ -19,11 +19,11 @@ use Illuminate\Support\Facades\Input;
 });*/
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
 });
 
-Route::get('/welcome', function () {
-    return view('welcome');
+Route::get('/index', function () {
+    return view('/index');
 });
 
 Route::get('/item_registration', function () {
