@@ -12,6 +12,7 @@
             <div class="navbar-header">
                 <a class="navbar-brand" href="/welcome">貸出システム</a>
                 <a class="navbar-brand" href="/lendhistory">貸出履歴</a>
+                <a class="navbar-brand" href="/item_registration">item</a>
             </div>
         </div>
     </nav>
