@@ -42,6 +42,7 @@
         <tr>
         <td>{{ $row->item_name}}</td>
         <td>{{ $row->student_number }}</td>
+        <td>{{ $row->rental_date }}</td>
         <td>{{ $row->completed }}</td>
             <td>
             <a href="" class="btn btn-primary btn-xs">メール送信</a>
