@@ -12,6 +12,7 @@
             <div class="navbar-header">
                 <a class="navbar-brand" href="/welcome">貸出システム</a>
                 <a class="navbar-brand" href="/lendhistory">貸出履歴</a>
+                <a class="navbar-brand" href="/item_registration">item</a>
             </div>
         </div>
     </nav>
@@ -28,7 +29,7 @@
       <div class="form-group">
         <label class="control-label" for="loan-number">貸出番号</label>
         <div>
-          <input type="password" id="loan-number" name="loan-number" class="form-control">
+          <input type="text" id="loan-number" name="loan-number" class="form-control">
         </div>
       </div>
       <div class="form-group">

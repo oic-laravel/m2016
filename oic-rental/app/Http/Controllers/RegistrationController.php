@@ -26,14 +26,13 @@ class RegistrationController extends Controller
 		$data = [];
 
  		$student = DB::table('student')->where('student_number', $student_number)->first();
- 		$item = DB::table('item')->where('item_id', $item_number)->first();
+ 		$item = DB::table('item')->where('item_number', $item_number)->first();
  		$data["student_number"] = $student->student_number;
  		$data["item_name"] = $item->item_name;
  		//Trying to get property of non-object yet...
  		DB::table('rental')->insert(
     		['student_id' => $student->student_id,
     		 'item_id' => $item->item_id,
-    		 'quantity' => 1,
     		 'rental_date' => $today,
     		 'plan_date' => $return_plan_day,
     		 'completed' => 0
