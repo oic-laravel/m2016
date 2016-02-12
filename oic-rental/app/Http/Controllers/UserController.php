@@ -48,9 +48,9 @@ class UserController extends Controller
 	}
 
     /**
-    * アイテム貸出
+    * insert item name to pullbox
     *
-    * URI : GET /registation
+    * URI : GET /item_registration_form
     * @author hide
     * @return array
     */
@@ -58,8 +58,37 @@ class UserController extends Controller
     {
         $data['itemName']=DB::table('item')
         ->select('item.item_name')
+        ->distinct()
         ->get();
         return view('/item_registration_form',$data);
+    }
+
+    /**
+    * insert item to database
+    *
+    * URI : POST /item_registration
+    * @author hide
+    * @return array
+    */
+    public function storeItem()
+    {
+        DB::table('item')->insert(
+            ['item_name' => Input::get('item'),
+             'remarks' => "test"
+             ]);
+
+        $id = DB::getPdo()->lastInsertId();
+
+        DB::table('item')
+        ->where('item_id', $id)
+        ->update(['item_number' => Input::get('item').'-'.$id]);
+        
+        $data['item']=DB::table('item')
+        ->select('item_number','item_name')
+        ->where('item_id', $id)
+        ->get();
+
+        return view('/item_completed',$data);
     }
 
     /**

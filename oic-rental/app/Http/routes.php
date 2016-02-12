@@ -34,6 +34,7 @@ Route::get('/lendhistory', 'UserController@showHistory');
 
 Route::post('/registration', 'UserController@storeRental');
 
+Route::post('/item_registration', 'UserController@storeItem');
 /*
 |--------------------------------------------------------------------------
 | アプリケーションのルート
