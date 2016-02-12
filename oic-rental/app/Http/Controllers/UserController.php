@@ -60,7 +60,8 @@ class UserController extends Controller
         $data['lendhistory']=DB::table('rental')
         ->join('item', 'rental.item_id', '=', 'item.item_id')
         ->join('student', 'rental.student_id', '=', 'student.student_id')
-        ->select('item.item_name', 'student.student_number','rental.completed')
+        ->select('item.item_name', 'student.student_number','rental.completed','rental_date')
+        ->orderBy('rental.rental_date', 'desc')
         ->get();
         return View::make('lendhistory',$data);
         //return View::make('lendhistory')->with('rentals',$rentals //[

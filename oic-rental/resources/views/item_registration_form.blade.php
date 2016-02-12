@@ -23,7 +23,9 @@
       <div class="form-group">
         <label class="control-label">Existing Item</label>
         <div>
-          <input type="text" id="exist-item" name="item" class="form-control">
+          <select name="item" id="exist-item" class="form-control">
+            <option value="1">1</option>
+          </select>
         </div>
       </div>
       <div class="form-group">
