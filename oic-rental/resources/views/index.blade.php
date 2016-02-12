@@ -12,7 +12,7 @@
             <div class="navbar-header">
                 <a class="navbar-brand" href="/index">貸出システム</a>
                 <a class="navbar-brand" href="/lendhistory">貸出履歴</a>
-                <a class="navbar-brand" href="/item_registration_form">item</a>
+                <a class="navbar-brand" href="/item_registration_form">貸出品登録</a>
                 <a class="navbar-brand" href="/student_registration_form">生徒登録</a>
             </div>
         </div>

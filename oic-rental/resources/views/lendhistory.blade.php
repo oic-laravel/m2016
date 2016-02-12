@@ -11,7 +11,8 @@
         <div class="navbar-header">
           <a class="navbar-brand" href="/index">貸出システム</a>
           <a class="navbar-brand" href="/lendhistory">貸出履歴</a>
-          <a class="navbar-brand" href="/item_registration_form">item</a>
+          <a class="navbar-brand" href="/item_registration_form">貸出品登録</a>
+          <a class="navbar-brand" href="/student_registration_form">生徒登録</a>
         </div>
       </div>
     </nav>
@@ -35,10 +36,7 @@
         </thead>
         <tbody>
           <tr>
-
             <ul class="rentals">
-
-
               @foreach($lendhistory as $row)
               <tr>
                 <td>{{ $row->item_name}}</td>
@@ -58,13 +56,11 @@
                 </td>
               </tr>
               @endforeach
-
             </ul>
           </tr>
         </tbody>
       </table>
     </div>
-
   </div>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha256-KXn5puMvxCw+dAYznun+drMdG1IFl3agK0p/pqT9KAo= sha512-2e8qq0ETcfWRI4HJBzQiA3UoyFk6tbNyG+qSaIBZLyW9Xf3sWZHN/lxe9fTh1U45DpPf07yj94KsUHHWe4Yk1A==" crossorigin="anonymous"></script>
 </body>
