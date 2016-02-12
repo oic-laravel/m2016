@@ -13,6 +13,21 @@ use Illuminate\Support\Facades\Input;
 class UserController extends Controller
 {
     /**
+    * 貸出履歴削除
+    *
+    * URI : POST /lendhistory/delete/{id}
+    * @param array $id
+    * @author takezoe
+    * @return App\Http\Controllers\UserController@showHistory
+    */
+    public function delete($id)
+    {
+        DB::table('rental')->where('rental_id', $id)->delete();
+
+        return redirect()->to('/lendhistory');
+    }
+
+    /**
     * アイテム貸出
     *
     * URI : GET /registation
@@ -48,9 +63,9 @@ class UserController extends Controller
 	}
 
     /**
-    * アイテム貸出
+    * insert item name to pullbox
     *
-    * URI : GET /registation
+    * URI : GET /item_registration_form
     * @author hide
     * @return array
     */
@@ -58,8 +73,37 @@ class UserController extends Controller
     {
         $data['itemName']=DB::table('item')
         ->select('item.item_name')
+        ->distinct()
         ->get();
         return view('/item_registration_form',$data);
+    }
+
+    /**
+    * insert item to database
+    *
+    * URI : POST /item_registration
+    * @author hide
+    * @return array
+    */
+    public function storeItem()
+    {
+        DB::table('item')->insert(
+            ['item_name' => Input::get('item'),
+             'remarks' => "test"
+             ]);
+
+        $id = DB::getPdo()->lastInsertId();
+
+        DB::table('item')
+        ->where('item_id', $id)
+        ->update(['item_number' => Input::get('item').'-'.$id]);
+        
+        $data['item']=DB::table('item')
+        ->select('item_number','item_name')
+        ->where('item_id', $id)
+        ->get();
+
+        return view('/item_completed',$data);
     }
 
     /**
@@ -75,7 +119,7 @@ class UserController extends Controller
         $data['lendhistory']=DB::table('rental')
         ->join('item', 'rental.item_id', '=', 'item.item_id')
         ->join('student', 'rental.student_id', '=', 'student.student_id')
-        ->select('item.item_name', 'student.student_number','rental.completed','rental_date')
+        ->select('rental.rental_id', 'item.item_name', 'student.student_number','rental.completed','rental_date')
         ->orderBy('rental.rental_date', 'desc')
         ->get();
         return View::make('lendhistory',$data);
