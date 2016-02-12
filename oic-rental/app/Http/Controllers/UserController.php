@@ -13,6 +13,21 @@ use Illuminate\Support\Facades\Input;
 class UserController extends Controller
 {
     /**
+    * 貸出履歴削除
+    *
+    * URI : POST /lendhistory/delete/{id}
+    * @param array $id
+    * @author takezoe
+    * @return App\Http\Controllers\UserController@showHistory
+    */
+    public function delete($id)
+    {
+        DB::table('rental')->where('rental_id', $id)->delete();
+
+        return redirect()->to('/lendhistory');
+    }
+
+    /**
     * アイテム貸出
     *
     * URI : GET /registation
@@ -60,7 +75,7 @@ class UserController extends Controller
         $data['lendhistory']=DB::table('rental')
         ->join('item', 'rental.item_id', '=', 'item.item_id')
         ->join('student', 'rental.student_id', '=', 'student.student_id')
-        ->select('item.item_name', 'student.student_number','rental.completed','rental_date')
+        ->select('rental.rental_id', 'item.item_name', 'student.student_number','rental.completed','rental_date')
         ->orderBy('rental.rental_date', 'desc')
         ->get();
         return View::make('lendhistory',$data);
