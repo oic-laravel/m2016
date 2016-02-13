@@ -6,22 +6,23 @@
 </head>
 <body>
   <header>
-    <nav class="navbar navbar-inverse navbar-static-top navbar-fixed">
-      <div class="container">
-        <div class="navbar-header">
-          <a class="navbar-brand" href="/index">貸出システム</a>
-          <a class="navbar-brand" href="/lendhistory">貸出履歴</a>
-          <a class="navbar-brand" href="/item_registration_form">貸出品登録</a>
-          <a class="navbar-brand" href="/student_registration_form">生徒登録</a>
-          <a class="navbar-brand" href="/student_registration_form">item list</a>
+      <nav class="navbar navbar-inverse navbar-static-top navbar-fixed">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/index">貸出システム</a>
+                <a class="navbar-brand" href="/lendhistory">貸出履歴</a>
+                <a class="navbar-brand" href="/item_registration_form">貸出品登録</a>
+                <a class="navbar-brand" href="/student_registration_form">生徒登録</a>
+                <a class="navbar-brand" href="/item_list">貸出品一覧</a>
+                <a class="navbar-brand" href="/item_return_form">返却</a>
+            </div>
         </div>
-      </div>
     </nav>
   </header>
   <div class="container">
 
     <!-- header -->
-    <div id="header" >item list</div>
+    <div id="header" >貸出品一覧</div>
 
     <!-- main -->
     <div class="col-md-9">
@@ -29,9 +30,9 @@
       <table class="table table-striped table-hover">
         <thead>
           <tr>
-            <th>item name</th>
-            <th>all stock</th>
-            <th>can rental</th>
+            <th>貸出品名</th>
+            <th>数量</th>
+            <th>貸出可能個数</th>
           </tr>
         </thead>
         <tbody>
