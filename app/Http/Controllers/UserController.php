@@ -218,8 +218,6 @@ class UserController extends Controller
         $student_name = Input::get('student-name');
     
 
-
-        //Trying to get property of non-object yet...
         DB::table('student')->insert(
             ['student_number' => $student_number,
              'department_id' => $department_id,
@@ -276,4 +274,20 @@ class UserController extends Controller
 
         return view('item_return', $data);
     } 
+
+        /**
+    * insert item name to pullbox
+    *
+    * URI : GET /delete_complete
+    * @author hisashi
+    * @return array
+    */
+    public function showItemDelete()
+    {
+        $item_number = Input::get('item-number');
+
+        DB::table('item')->where('item_number', $item_number)->delete();
+
+        return view('/delete_complete')->with('item_number',$item_number);
+    }
 }

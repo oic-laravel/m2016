@@ -22,9 +22,14 @@ Route::get('/', function () {
     return view('index');
 });
 
+Route::get('/delete_item',function(){
+	return view('delete_item');
+	});
+
+
 Route::get('/mail', function(){
  
-<<<< HEAD
+
 
 	// 現状はわたすデータがないのでエンプティーアレイをわたします
 	$data = [];
@@ -67,6 +72,8 @@ Route::post('/lendhistory/delete/{id}','UserController@delete');
 Route::post('/registration', 'UserController@storeRental');
 
 Route::post('/item_registration', 'UserController@storeItem');
+
+Route::post('/delete_complete', 'UserController@showItemDelete');
 
 /*
 |--------------------------------------------------------------------------
