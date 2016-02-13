@@ -43,6 +43,15 @@ class UserController extends Controller
 
 		$student_number = Input::get('student-number');
 		$item_number = Input::get('loan-number');
+
+        $result=DB::table('item')
+        ->where('item_number','=',$item_number)
+        ->where('loaned','=',1)
+        ->first();
+        if($result){//error! item was loaned. 
+            return view('index');
+        }
+        
 		$data = [];
 
  		$student = DB::table('student')->where('student_number', '=', $student_number)->first();
@@ -58,6 +67,11 @@ class UserController extends Controller
     		 'completed' => 0
     		 ]
 		);
+
+        DB::table('item')
+        ->where('item_number','=',$item_number)
+        ->update(['loaned' => 1]);
+
         // view関数の第２引数に配列を渡す
     	return view('registration', $data);
 	}
@@ -71,12 +85,19 @@ class UserController extends Controller
     */
     public function showItemList()
     {
-        $data['lendhistory']=DB::table('rental')
-        ->join('item', 'rental.item_id', '=', 'item.item_id')
-        ->join('student', 'rental.student_id', '=', 'student.student_id')
-        ->select('rental.rental_id', 'item.item_name', 'student.student_number','rental.completed','rental_date')
-        ->orderBy('rental.rental_date', 'desc')
-        ->get();
+        $data['itemList'] = DB::select('select DISTINCT base.item_name ,item_count,loaned_count
+                        from item base
+                        left OUTER join (select item1.item_name,count(item1.item_name) as item_count
+                                        from item item1
+                                        group by item1.item_name
+                            ) as item_count
+                            on base.item_name = item_count.item_name
+                        left OUTER join (select item2.item_name,count(item2.loaned) as loaned_count
+                                        from item item2
+                                        where loaned = 0
+                                        group by item2.item_name
+                            ) as item_loaned
+                        on base.item_name = item_loaned.item_name');
         return View::make('/item_list',$data);
     }
 
