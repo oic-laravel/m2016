@@ -30,7 +30,7 @@ class UserController extends Controller
     /**
     * アイテム貸出
     *
-    * URI : GET /registation
+    * URI : POST /registation
     * @author hide
     * @return array
     */
@@ -43,6 +43,14 @@ class UserController extends Controller
 
 		$student_number = Input::get('student-number');
 		$item_number = Input::get('loan-number');
+
+        $result=DB::table('item')
+        ->where('item_number','=',$item_number)
+        ->where('loaned','=',1)
+        ->first();
+        if($result){//error! item was loaned. 
+            return view('index');
+        }
 		$data = [];
 
  		$student = DB::table('student')->where('student_number', '=', $student_number)->first();
@@ -58,9 +66,39 @@ class UserController extends Controller
     		 'completed' => 0
     		 ]
 		);
+
+        DB::table('item')
+        ->where('item_number','=',$item_number)
+        ->update(['loaned' => 1]);
+
         // view関数の第２引数に配列を渡す
     	return view('registration', $data);
 	}
+
+    /**
+    * show item list
+    *
+    * URI : GET /item_list
+    * @author hide
+    * @return void
+    */
+    public function showItemList()
+    {
+        $data['itemList'] = DB::table('item')
+                     ->select(DB::raw('item_name,count(item_name) as item_count'))
+                     ->groupBy('item_name')
+                     ->get();
+
+        $data['canList'] = DB::table('item')
+                     ->select(DB::raw('count(loaned) as item_loaned'))
+                     ->where('loaned','=',0)
+                     ->get();
+
+        //$data['itemList']=DB::table('item')
+        //->select('item_name','item_number','loaned')
+        //->get();
+        return View::make('/item_list',$data);
+    }
 
     /**
     * insert item name to pullbox
@@ -81,7 +119,7 @@ class UserController extends Controller
     /**
     * insert item to database
     *
-    * URI : POST /item_registration
+    * URI : GET /item_registration
     * @author hide
     * @return array
     */
@@ -123,27 +161,13 @@ class UserController extends Controller
         ->orderBy('rental.rental_date', 'desc')
         ->get();
         return View::make('lendhistory',$data);
-        //return View::make('lendhistory')->with('rentals',$rentals //[
-        //['item_name' => 'item_id','student_number' => 'student_id','complete_flug' => 'completed'],
-
-            //]
-            //);
-
-            //return View::make('lendhistory')->with('rental', rental::get());
-
-            //table('rental')->get();
-            /*<ul class="rentals">
-            @foreach($rentals as $rental)
-            <td>{{$rental['item_name']}}</td><td>{{$rental['student_number']}}</td><td>{{$rental['complete_flug']}}</td> 
-            @endforeach
-        </ul>*/
     }
 
 
     /**
     * 生徒登録
     *
-    * URI : GET /student_regi
+    * URI : GET /student_registration_form
     * @author hisashi
     * @return array
     */
@@ -155,7 +179,13 @@ class UserController extends Controller
         // view関数の第２引数に配列を渡す
         return view('student_registration_form', $departments,$teachers);
     }
-
+    /**
+    * 生徒登録
+    *
+    * URI : POST /student_registration
+    * @author hisashi
+    * @return array
+    */
         public function storeStudent()
     {
 
@@ -180,4 +210,48 @@ class UserController extends Controller
         return view('student_registration');
     }
 
+      /**
+    * 返却
+    *
+    * URI : post /item_return
+    * @author sho
+    * @return array
+    */
+
+     public function Restore()
+    {
+        date_default_timezone_set('Asia/Tokyo');
+
+        $returned_day = date("Y/m/d");
+
+
+        $student_number = Input::get('student-number');
+        $item_number = Input::get('loan-number');
+        $data = [];
+
+        $student = DB::table('student')->where('student_number', '=', $student_number)->first();
+
+        DB::table('item')
+        ->where('item_number', '=', $item_number)
+        ->update(['loaned' => 0]);
+
+        $item = DB::table('item')->where('item_number', '=', $item_number)->first();
+
+         DB::table('rental')
+            ->where('student_id', '=', $student->student_id)
+            ->where('item_id', '=', $item->item_id)
+            ->update(['return_date' => $returned_day,'completed' => 1]);
+
+        $rental = DB::table('rental')->where('student_id', '=', $student->student_id)
+            ->where('item_id', '=', $item->item_id)
+            ->where('return_date','=',$returned_day)
+            ->first();
+
+        $data["student_number"] = $student->student_number;
+        $data["item_name"] = $item->item_name;
+        $data["plan_date"] = $rental->plan_date;
+        $data["retun_date"] = $rental->return_date;
+
+        return view('item_return', $data);
+    } 
 }

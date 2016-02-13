@@ -13,6 +13,7 @@
           <a class="navbar-brand" href="/lendhistory">貸出履歴</a>
           <a class="navbar-brand" href="/item_registration_form">貸出品登録</a>
           <a class="navbar-brand" href="/student_registration_form">生徒登録</a>
+          <a class="navbar-brand" href="/student_registration_form">item list</a>
         </div>
       </div>
     </nav>
@@ -20,7 +21,7 @@
   <div class="container">
 
     <!-- header -->
-    <div id="header" >貸出一覧</div>
+    <div id="header" >item list</div>
 
     <!-- main -->
     <div class="col-md-9">
@@ -28,31 +29,22 @@
       <table class="table table-striped table-hover">
         <thead>
           <tr>
-            <th>品名</th>
-            <th>学籍番号</th>
-            <th>貸出日付</th>
-            <th>返却</th>
+            <th>item name</th>
+            <th>all stock</th>
+            <th>can rental</th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <ul class="rentals">
-              @foreach($lendhistory as $row)
+              @foreach($itemList as $row)
               <tr>
                 <td>{{ $row->item_name}}</td>
-                <td>{{ $row->student_number }}</td>
-                <td>{{ $row->rental_date }}</td>
-                <td>{{ $row->completed }}</td>
+                <td>{{ $row->item_count }}</td>
+                @foreach($canList as $row)
+                  <td>{{ $row->item_loaned }}</td>
+                @endforeach
                 <td>
-                <div style="display:inline-flex">
-                  <form class="form-horizontal" action="#" method="POST">
-                    <input type="submit" class="btn btn-primary btn-xs" value="メール送信" style="margin-right: 10px">
-                  </form>
-                  <form class="form-horizontal" method="post" action="/lendhistory/delete/{{$row->rental_id}}">
-                    <input type="hidden" name="_token" value="{{csrf_token()}}">
-                    <input type="submit" value="削除" class="btn btn-primary btn-xs">
-                  </form>
-                </div>
                 </td>
               </tr>
               @endforeach

@@ -30,16 +30,24 @@ Route::get('/student_registration_form', 'UserController@showStudentForm');
 
 Route::post('/student_registration', 'UserController@storeStudent');
 
-
+Route::get('/item_list', 'UserController@showItemList');
 
 Route::get('/item_registration_form', 'UserController@showItem');
 
+Route::get('/item_return_form',function()
+	{
+		return view('item_return_form');
+	});
+Route::post('/item_return','UserController@Restore');
+
 Route::get('/lendhistory', 'UserController@showHistory');
+
 Route::post('/lendhistory/delete/{id}','UserController@delete');
 
 Route::post('/registration', 'UserController@storeRental');
 
 Route::post('/item_registration', 'UserController@storeItem');
+
 /*
 |--------------------------------------------------------------------------
 | アプリケーションのルート

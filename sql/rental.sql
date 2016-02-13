@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: 2016 年 2 月 13 日 01:54
+-- Generation Time: 2016 年 2 月 13 日 23:50
 -- サーバのバージョン： 5.6.28-0ubuntu0.15.10.1
 -- PHP Version: 5.6.11-1ubuntu3.1
 
@@ -48,16 +48,61 @@ CREATE TABLE IF NOT EXISTS `item` (
   `item_id` int(4) NOT NULL COMMENT 'item id',
   `item_number` varchar(100) NOT NULL COMMENT 'item number (P-01)',
   `item_name` varchar(100) NOT NULL COMMENT 'item name',
+  `loaned` tinyint(4) NOT NULL DEFAULT '0' COMMENT 'loaned',
   `remarks` varchar(200) NOT NULL COMMENT 'remarks'
-) ENGINE=InnoDB AUTO_INCREMENT=106 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=150 DEFAULT CHARSET=utf8;
 
 --
 -- テーブルのデータのダンプ `item`
 --
 
-INSERT INTO `item` (`item_id`, `item_number`, `item_name`, `remarks`) VALUES
-(104, 'pentab-104', 'pentab', '''pentab'' + ''-'' + ''item_id'''),
-(105, 'camera-105', 'camera', 'camera');
+INSERT INTO `item` (`item_id`, `item_number`, `item_name`, `loaned`, `remarks`) VALUES
+(104, 'pentab-104', 'pentab', 0, '''pentab'' + ''-'' + ''item_id'''),
+(105, 'camera-105', 'camera', 0, 'camera'),
+(106, 'camera-106', 'camera', 0, 'test'),
+(107, 'pentab-107', 'pentab', 0, 'test'),
+(108, 'note-pc-108', 'note-pc', 0, 'test'),
+(109, 'pentab-109', 'pentab', 0, 'test'),
+(110, 'pentab-110', 'pentab', 0, 'test'),
+(111, 'pentab-111', 'pentab', 0, 'test'),
+(112, 'pentab-112', 'pentab', 0, 'test'),
+(113, 'pentab-113', 'pentab', 0, 'test'),
+(114, 'pentab-114', 'pentab', 0, 'test'),
+(115, 'pentab-115', 'pentab', 0, 'test'),
+(116, 'pentab-116', 'pentab', 0, 'test'),
+(117, 'pentab-117', 'pentab', 0, 'test'),
+(118, 'pentab-118', 'pentab', 0, 'test'),
+(119, 'pentab-119', 'pentab', 0, 'test'),
+(120, 'pentab-120', 'pentab', 0, 'test'),
+(121, 'pentab-121', 'pentab', 0, 'test'),
+(122, 'pentab-122', 'pentab', 0, 'test'),
+(123, 'pentab-123', 'pentab', 0, 'test'),
+(124, 'pentab-124', 'pentab', 0, 'test'),
+(125, 'pentab-125', 'pentab', 0, 'test'),
+(126, 'pentab-126', 'pentab', 0, 'test'),
+(127, 'pentab-127', 'pentab', 0, 'test'),
+(128, 'pentab-128', 'pentab', 0, 'test'),
+(129, 'pentab-129', 'pentab', 0, 'test'),
+(130, 'pentab-130', 'pentab', 0, 'test'),
+(131, 'pentab-131', 'pentab', 0, 'test'),
+(132, 'pentab-132', 'pentab', 0, 'test'),
+(133, 'pentab-133', 'pentab', 0, 'test'),
+(134, 'pentab-134', 'pentab', 0, 'test'),
+(135, 'pentab-135', 'pentab', 0, 'test'),
+(136, 'pentab-136', 'pentab', 0, 'test'),
+(137, 'pentab-137', 'pentab', 0, 'test'),
+(138, 'pentab-138', 'pentab', 0, 'test'),
+(139, 'pentab-139', 'pentab', 0, 'test'),
+(140, 'pentab-140', 'pentab', 0, 'test'),
+(141, 'pentab-141', 'pentab', 0, 'test'),
+(142, 'pentab-142', 'pentab', 0, 'test'),
+(143, 'pentab-143', 'pentab', 0, 'test'),
+(144, 'pentab-144', 'pentab', 0, 'test'),
+(145, 'note-pc-145', 'note-pc', 0, 'test'),
+(146, 'pentab-146', 'pentab', 0, 'test'),
+(147, 'pentab-147', 'pentab', 0, 'test'),
+(148, 'pentab-148', 'pentab', 0, 'test'),
+(149, 'pentab-149', 'pentab', 0, 'test');
 
 -- --------------------------------------------------------
 
@@ -73,20 +118,17 @@ CREATE TABLE IF NOT EXISTS `rental` (
   `plan_date` date NOT NULL COMMENT 'return plan date',
   `return_date` date NOT NULL COMMENT 'return date',
   `completed` tinyint(1) NOT NULL COMMENT 'completed (ok or no)'
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 
 --
 -- テーブルのデータのダンプ `rental`
 --
 
 INSERT INTO `rental` (`rental_id`, `student_id`, `item_id`, `rental_date`, `plan_date`, `return_date`, `completed`) VALUES
-(1, 1, 104, '2016-02-01', '2016-02-08', '2016-02-07', 0),
-(2, 1, 104, '2016-02-12', '2016-02-19', '0000-00-00', 0),
-(3, 1, 104, '2016-02-13', '2016-02-20', '0000-00-00', 0),
-(4, 1, 104, '2016-02-13', '2016-02-20', '0000-00-00', 0),
-(5, 1, 105, '2016-02-13', '2016-02-20', '0000-00-00', 0),
-(6, 1, 105, '2016-02-13', '2016-02-20', '0000-00-00', 0),
-(7, 1, 105, '2016-02-13', '2016-02-20', '0000-00-00', 0);
+(5, 1, 105, '2016-02-13', '2016-02-20', '2016-02-13', 1),
+(8, 1, 105, '2016-02-13', '2016-02-20', '2016-02-13', 1),
+(9, 1, 105, '2016-02-13', '2016-02-20', '2016-02-13', 1),
+(10, 1, 106, '2016-02-13', '2016-02-20', '2016-02-13', 1);
 
 -- --------------------------------------------------------
 
@@ -101,7 +143,7 @@ CREATE TABLE IF NOT EXISTS `student` (
   `teacher_id` int(4) NOT NULL COMMENT 'teacher id',
   `student_name` varchar(100) NOT NULL COMMENT 'student name',
   `student_email` varchar(100) NOT NULL COMMENT 'student_email'
-) ENGINE=InnoDB AUTO_INCREMENT=102 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=105 DEFAULT CHARSET=utf8;
 
 --
 -- テーブルのデータのダンプ `student`
@@ -208,7 +250,10 @@ INSERT INTO `student` (`student_id`, `student_number`, `department_id`, `teacher
 (98, 'b96', 1, 1, 'テスト96', 'b96@oic.jp'),
 (99, 'b97', 1, 1, 'テスト97', 'b97@oic.jp'),
 (100, 'b98', 1, 1, 'テスト98', 'b98@oic.jp'),
-(101, 'b99', 1, 1, 'テスト99', 'b99@oic.jp');
+(101, 'b99', 1, 1, 'テスト99', 'b99@oic.jp'),
+(102, 'b2222', 1, 10, 'aaa', 'b2222@oic.jp'),
+(103, 'b3333', 1, 1, 'aaa', 'b3333@oic.jp'),
+(104, 'b9999', 1, 1, 'aaallal', 'b9999@oic.jp');
 
 -- --------------------------------------------------------
 
@@ -384,17 +429,17 @@ ALTER TABLE `department`
 -- AUTO_INCREMENT for table `item`
 --
 ALTER TABLE `item`
-  MODIFY `item_id` int(4) NOT NULL AUTO_INCREMENT COMMENT 'item id',AUTO_INCREMENT=106;
+  MODIFY `item_id` int(4) NOT NULL AUTO_INCREMENT COMMENT 'item id',AUTO_INCREMENT=150;
 --
 -- AUTO_INCREMENT for table `rental`
 --
 ALTER TABLE `rental`
-  MODIFY `rental_id` int(8) NOT NULL AUTO_INCREMENT COMMENT 'rental id (pk)',AUTO_INCREMENT=8;
+  MODIFY `rental_id` int(8) NOT NULL AUTO_INCREMENT COMMENT 'rental id (pk)',AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT for table `student`
 --
 ALTER TABLE `student`
-  MODIFY `student_id` int(4) NOT NULL AUTO_INCREMENT COMMENT 'student id',AUTO_INCREMENT=102;
+  MODIFY `student_id` int(4) NOT NULL AUTO_INCREMENT COMMENT 'student id',AUTO_INCREMENT=105;
 --
 -- AUTO_INCREMENT for table `teacher`
 --
