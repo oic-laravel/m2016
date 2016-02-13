@@ -21,10 +21,10 @@
     </nav>
   </header>
   <div class="container" style="margin-top:100px; padding:20px 0;">
-    <h1 class="text-center">completed item registration</h1>
+    <h1 class="text-center">貸出品登録が完了しました</h1>
     @foreach($item as $row)
-    item_number : {{ $row->item_number }}<br>
-    item_name   : {{ $row->item_name }}
+    貸出品番号 : {{ $row->item_number }}<br>
+    貸出品名   : {{ $row->item_name }}
     @endforeach
   </div>
   <div>
