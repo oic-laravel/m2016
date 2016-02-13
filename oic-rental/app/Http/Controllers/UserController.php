@@ -230,6 +230,11 @@ class UserController extends Controller
         $data = [];
 
         $student = DB::table('student')->where('student_number', '=', $student_number)->first();
+
+        DB::table('item')
+        ->where('item_number', '=', $item_number)
+        ->update(['loaned' => 0]);
+
         $item = DB::table('item')->where('item_number', '=', $item_number)->first();
 
          DB::table('rental')
