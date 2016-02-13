@@ -190,4 +190,51 @@ class UserController extends Controller
         return view('student_registration');
     }
 
+      /**
+    * 返却
+    *
+    * URI : post /item_return
+    * @author sho
+    * @return array
+    */
+
+     public function Restore()
+    {
+        date_default_timezone_set('Asia/Tokyo');
+
+        $returned_day = date("Y/m/d");
+
+
+        $student_number = Input::get('student-number');
+        $item_number = Input::get('loan-number');
+        $data = [];
+
+        $student = DB::table('student')->where('student_number', '=', $student_number)->first();
+        $item = DB::table('item')->where('item_number', '=', $item_number)->first();
+
+         DB::table('rental')
+            ->where('student_id', '=', $student->student_id)
+            ->where('item_id', '=', $item->item_id)
+            ->update(['return_date' => $returned_day,'completed' => 1]);
+
+        $rental = DB::table('rental')->where('student_id', '=', $student->student_id)
+            ->where('item_id', '=', $item->item_id)
+            ->where('return_date','=',$returned_day)
+            ->first();
+
+        $data["student_number"] = $student->student_number;
+        $data["item_name"] = $item->item_name;
+        $data["plan_date"] = $rental->plan_date;
+        $data["retun_date"] = $rental->return_date;
+
+        //Trying to get property of non-object yet...
+        /*DB::table('rental')->insert(
+            [
+             'plan_date' => $return_plan_day,
+             'completed' => 1
+             ]
+        );*/
+        // view関数の第２引数に配列を渡す
+        return view('item_return', $data);
+    } 
 }
