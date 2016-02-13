@@ -43,6 +43,14 @@ class UserController extends Controller
 
 		$student_number = Input::get('student-number');
 		$item_number = Input::get('loan-number');
+
+        $result=DB::table('item')
+        ->where('item_number','=',$item_number)
+        ->where('loaned','=',1)
+        ->first();
+        if($result){//error! item was loaned. 
+            return view('index');
+        }
 		$data = [];
 
  		$student = DB::table('student')->where('student_number', '=', $student_number)->first();
@@ -58,6 +66,11 @@ class UserController extends Controller
     		 'completed' => 0
     		 ]
 		);
+
+        DB::table('item')
+        ->where('item_number','=',$item_number)
+        ->update(['loaned' => 1]);
+
         // view関数の第２引数に配列を渡す
     	return view('registration', $data);
 	}
@@ -71,9 +84,19 @@ class UserController extends Controller
     */
     public function showItemList()
     {
-        $data['itemList']=DB::table('item')
-        ->select('item_name','item_number','loaned')
-        ->get();
+        $data['itemList'] = DB::table('item')
+                     ->select(DB::raw('item_name,count(item_name) as item_count'))
+                     ->groupBy('item_name')
+                     ->get();
+
+        $data['canList'] = DB::table('item')
+                     ->select(DB::raw('count(loaned) as item_loaned'))
+                     ->where('loaned','=',0)
+                     ->get();
+
+        //$data['itemList']=DB::table('item')
+        //->select('item_name','item_number','loaned')
+        //->get();
         return View::make('/item_list',$data);
     }
 

@@ -30,8 +30,8 @@
         <thead>
           <tr>
             <th>item name</th>
-            <th>item number</th>
-            <th>loaned</th>
+            <th>all stock</th>
+            <th>can rental</th>
           </tr>
         </thead>
         <tbody>
@@ -40,8 +40,10 @@
               @foreach($itemList as $row)
               <tr>
                 <td>{{ $row->item_name}}</td>
-                <td>{{ $row->item_number }}</td>
-                <td>{{ $row->loaned }}</td>
+                <td>{{ $row->item_count }}</td>
+                @foreach($canList as $row)
+                  <td>{{ $row->item_loaned }}</td>
+                @endforeach
                 <td>
                 </td>
               </tr>
