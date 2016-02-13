@@ -29,19 +29,19 @@
       <table class="table table-striped table-hover">
         <thead>
           <tr>
-            <th>品名</th>
-            <th>all stock</th>
-            <th>can stock</th>
+            <th>item name</th>
+            <th>item number</th>
+            <th>loaned</th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <ul class="rentals">
-              @foreach($lendhistory as $row)
+              @foreach($itemList as $row)
               <tr>
                 <td>{{ $row->item_name}}</td>
-                <td>{{ $row->student_number }}</td>
-                <td>{{ $row->rental_date }}</td>
+                <td>{{ $row->item_number }}</td>
+                <td>{{ $row->loaned }}</td>
                 <td>
                 </td>
               </tr>

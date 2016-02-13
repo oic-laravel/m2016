@@ -71,11 +71,8 @@ class UserController extends Controller
     */
     public function showItemList()
     {
-        $data['lendhistory']=DB::table('rental')
-        ->join('item', 'rental.item_id', '=', 'item.item_id')
-        ->join('student', 'rental.student_id', '=', 'student.student_id')
-        ->select('rental.rental_id', 'item.item_name', 'student.student_number','rental.completed','rental_date')
-        ->orderBy('rental.rental_date', 'desc')
+        $data['itemList']=DB::table('item')
+        ->select('item_name','item_number','loaned')
         ->get();
         return View::make('/item_list',$data);
     }
@@ -227,14 +224,6 @@ class UserController extends Controller
         $data["plan_date"] = $rental->plan_date;
         $data["retun_date"] = $rental->return_date;
 
-        //Trying to get property of non-object yet...
-        /*DB::table('rental')->insert(
-            [
-             'plan_date' => $return_plan_day,
-             'completed' => 1
-             ]
-        );*/
-        // view関数の第２引数に配列を渡す
         return view('item_return', $data);
     } 
 }
