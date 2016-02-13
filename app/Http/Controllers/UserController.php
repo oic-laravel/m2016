@@ -51,7 +51,7 @@ class UserController extends Controller
         if($result){//error! item was loaned. 
             return view('index');
         }
-        
+
 		$data = [];
 
  		$student = DB::table('student')->where('student_number', '=', $student_number)->first();
@@ -85,7 +85,7 @@ class UserController extends Controller
     */
     public function showItemList()
     {
-        $data['itemList'] = DB::select('select DISTINCT base.item_name ,item_count,loaned_count
+        $data['itemList'] = DB::select('select DISTINCT base.item_name ,item_count,ifnull(loaned_count,0)
                         from item base
                         left OUTER join (select item1.item_name,count(item1.item_name) as item_count
                                         from item item1
