@@ -1,6 +1,6 @@
 <?php
 use Illuminate\Support\Facades\Input;
-
+use Illuminate\Support\Facades\Mail;
 /*
 |--------------------------------------------------------------------------
 | ルートファイル
@@ -22,6 +22,16 @@ Route::get('/', function () {
     return view('index');
 });
 
+Route::get('/mail', function(){
+ 
+	// 現状はわたすデータがないのでエンプティーアレイをわたします
+	$data = [];
+	Mail::send('emails.text', $data, function($message){
+		$message->to('kutuzov1228@gmail.com')
+						->subject('ここがタイトルです');
+	});
+ 
+});
 Route::get('/index', function () {
     return view('/index');
 });
