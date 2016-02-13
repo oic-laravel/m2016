@@ -24,7 +24,7 @@
   <div class="container">
 
     <!-- header -->
-    <div id="header" >貸出一覧</div>
+    <div id="header" >貸出履歴一覧</div>
 
     <!-- main -->
     <div class="container">
@@ -33,6 +33,7 @@
         <thead>
           <tr>
             <th class="text-center">品名</th>
+            <th class="text-center">貸出品番号</th>
             <th class="text-center">学籍番号</th>
             <th class="text-center">貸出日付</th>
             <th class="text-center">返却</th>
@@ -44,6 +45,7 @@
               @foreach($lendhistory as $row)
               <tr>
                 <td>{{ $row->item_name}}</td>
+                <td>{{ $row->item_number}}</td>
                 <td>{{ $row->student_number }}</td>
                 <td>{{ $row->rental_date }}</td>
                 <td>{{ $row->completed }}</td>

@@ -22,7 +22,7 @@
   <div class="container">
 
     <!-- header -->
-    <div id="header" >item list</div>
+    <div id="header" >貸出品一覧</div>
 
     <!-- main -->
     <div class="col-md-9">
@@ -30,9 +30,9 @@
       <table class="table table-striped table-hover">
         <thead>
           <tr>
-            <th>item name</th>
-            <th>all stock</th>
-            <th>can rental</th>
+            <th>貸出品名</th>
+            <th>数量</th>
+            <th>貸出可能個数</th>
           </tr>
         </thead>
         <tbody>
