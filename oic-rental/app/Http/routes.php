@@ -30,11 +30,12 @@ Route::get('/student_registration_form', 'UserController@showStudentForm');
 
 Route::post('/student_registration', 'UserController@storeStudent');
 
-
+Route::get('/item_list', 'UserController@showItemList');
 
 Route::get('/item_registration_form', 'UserController@showItem');
 
 Route::get('/lendhistory', 'UserController@showHistory');
+
 Route::post('/lendhistory/delete/{id}','UserController@delete');
 
 Route::post('/registration', 'UserController@storeRental');
