@@ -22,13 +22,24 @@
   </header>
   <div class="container" style="margin-top:100px; padding:20px 0;">
     <h1 class="text-center">貸出品登録が完了しました</h1>
+    <div class="col-md-6 col-md-offset-3" style="margin-top:50px">
     @foreach($item as $row)
     貸出品番号 : {{ $row->item_number }}<br>
     貸出品名   : {{ $row->item_name }}
     @endforeach
     <br>
     <br>
-    <?= $barcode ?>
+    このページをプリントアウトしてバーコードを貸出品に貼り付けてください。<br>
+    紙は厳重に保管してください。
+    </div>
+    <br>
+    <div class="col-md-4 col-md-offset-4" style="margin-top:100px">
+    ----------------------------------------------------------<br>
+    <br>
+    <?= $barcode ?><br>
+    {{ $row->item_number}}<br>
+    ----------------------------------------------------------
+    </div>
   </div>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha256-KXn5puMvxCw+dAYznun+drMdG1IFl3agK0p/pqT9KAo= sha512-2e8qq0ETcfWRI4HJBzQiA3UoyFk6tbNyG+qSaIBZLyW9Xf3sWZHN/lxe9fTh1U45DpPf07yj94KsUHHWe4Yk1A==" crossorigin="anonymous"></script>
 </body>
