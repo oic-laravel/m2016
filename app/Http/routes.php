@@ -32,6 +32,13 @@ Route::get('/mail', function(){
 	});
  
 });
+Route::post('/bar', 'UserController@showBarcode');
+
+Route::post('/barcode', function () {
+	$generator = new \Picqer\Barcode\BarcodeGeneratorPNG();
+	return '<img src="data:image/png;base64,' . base64_encode($generator->getBarcode(Input::get('barcode-value'), $generator::TYPE_CODE_128)) . '">';
+});
+
 Route::get('/index', function () {
     return view('/index');
 });

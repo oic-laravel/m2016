@@ -142,8 +142,26 @@ class UserController extends Controller
         ->where('item_id', $id)
         ->get();
 
-        return view('/item_completed',$data);
+        $generator = new \Picqer\Barcode\BarcodeGeneratorPNG();
+        $barcode = '<img src="data:image/png;base64,' . base64_encode($generator->getBarcode(Input::get('item').'-'.$id, $generator::TYPE_CODE_128)) . '">';
+
+        return view('/item_completed',$data)->with('barcode',$barcode);
     }
+
+    /**
+    * show barcode
+    *
+    * URI : GET /?
+    * @author hide
+    * @return array
+    */
+    public function showBarcode()
+    {
+        $generator = new \Picqer\Barcode\BarcodeGeneratorPNG();
+        return '<img src="data:image/png;base64,' . base64_encode($generator->getBarcode(Input::get('barcode-value'), $generator::TYPE_CODE_128)) . '">';
+    }
+
+
 
     /**
     * 貸出履歴表示
