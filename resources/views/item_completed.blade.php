@@ -26,23 +26,9 @@
     貸出品番号 : {{ $row->item_number }}<br>
     貸出品名   : {{ $row->item_name }}
     @endforeach
-  </div>
-  <div>
-    <form class="form-horizontal col-md-4 col-md-offset-4" action="#" method="POST">
-      <div class="form-group">
-        <label class="control-label" for="loan-number">バーコード生成</label>
-        <div>
-        @foreach($item as $row)
-          <input type="text" id="barcode-value" name="barcode-value" value={{ $row->item_number }} class="form-control">
-        @endforeach
-        </div>
-      </div>
-      <div class="form-group">
-        <div class="col-md-offset-4 col-md-4">
-          <button type="submit" class="btn btn-primary btn-block">登録</button>
-        </div>
-      </div>
-    </form>
+    <br>
+    <br>
+    <?= $barcode ?>
   </div>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha256-KXn5puMvxCw+dAYznun+drMdG1IFl3agK0p/pqT9KAo= sha512-2e8qq0ETcfWRI4HJBzQiA3UoyFk6tbNyG+qSaIBZLyW9Xf3sWZHN/lxe9fTh1U45DpPf07yj94KsUHHWe4Yk1A==" crossorigin="anonymous"></script>
 </body>

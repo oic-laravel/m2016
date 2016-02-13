@@ -142,8 +142,26 @@ class UserController extends Controller
         ->where('item_id', $id)
         ->get();
 
-        return view('/item_completed',$data);
+        $generator = new \Picqer\Barcode\BarcodeGeneratorPNG();
+        $barcode = '<img src="data:image/png;base64,' . base64_encode($generator->getBarcode(Input::get('item').'-'.$id, $generator::TYPE_CODE_128)) . '">';
+
+        return view('/item_completed',$data)->with('barcode',$barcode);
     }
+
+    /**
+    * show barcode
+    *
+    * URI : GET /?
+    * @author hide
+    * @return array
+    */
+    public function showBarcode()
+    {
+        $generator = new \Picqer\Barcode\BarcodeGeneratorPNG();
+        return '<img src="data:image/png;base64,' . base64_encode($generator->getBarcode(Input::get('barcode-value'), $generator::TYPE_CODE_128)) . '">';
+    }
+
+
 
     /**
     * 貸出履歴表示
@@ -234,6 +252,11 @@ class UserController extends Controller
         $data = [];
 
         $student = DB::table('student')->where('student_number', '=', $student_number)->first();
+
+        DB::table('item')
+        ->where('item_number', '=', $item_number)
+        ->update(['loaned' => 0]);
+
         $item = DB::table('item')->where('item_number', '=', $item_number)->first();
 
          DB::table('rental')
@@ -251,14 +274,6 @@ class UserController extends Controller
         $data["plan_date"] = $rental->plan_date;
         $data["retun_date"] = $rental->return_date;
 
-        //Trying to get property of non-object yet...
-        /*DB::table('rental')->insert(
-            [
-             'plan_date' => $return_plan_day,
-             'completed' => 1
-             ]
-        );*/
-        // view関数の第２引数に配列を渡す
         return view('item_return', $data);
     } 
 }

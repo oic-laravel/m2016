@@ -1,6 +1,6 @@
 <?php
 use Illuminate\Support\Facades\Input;
-
+use Illuminate\Support\Facades\Mail;
 /*
 |--------------------------------------------------------------------------
 | ルートファイル
@@ -20,6 +20,23 @@ use Illuminate\Support\Facades\Input;
 
 Route::get('/', function () {
     return view('index');
+});
+
+Route::get('/mail', function(){
+ 
+	// 現状はわたすデータがないのでエンプティーアレイをわたします
+	$data = [];
+	Mail::send('emails.text', $data, function($message){
+		$message->to('kutuzov1228@gmail.com')
+						->subject('ここがタイトルです');
+	});
+ 
+});
+Route::post('/bar', 'UserController@showBarcode');
+
+Route::post('/barcode', function () {
+	$generator = new \Picqer\Barcode\BarcodeGeneratorPNG();
+	return '<img src="data:image/png;base64,' . base64_encode($generator->getBarcode(Input::get('barcode-value'), $generator::TYPE_CODE_128)) . '">';
 });
 
 Route::get('/index', function () {
