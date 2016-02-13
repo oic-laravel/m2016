@@ -85,7 +85,7 @@ class UserController extends Controller
     */
     public function showItemList()
     {
-        $data['itemList'] = DB::select('select DISTINCT base.item_name ,item_count,ifnull(loaned_count,0)
+        $data['itemList'] = DB::select('select DISTINCT base.item_name ,item_count,ifnull(loaned_count,0) as loaned_count
                         from item base
                         left OUTER join (select item1.item_name,count(item1.item_name) as item_count
                                         from item item1
