@@ -234,6 +234,11 @@ class UserController extends Controller
         $data = [];
 
         $student = DB::table('student')->where('student_number', '=', $student_number)->first();
+
+        DB::table('item')
+        ->where('item_number', '=', $item_number)
+        ->update(['loaned' => 0]);
+
         $item = DB::table('item')->where('item_number', '=', $item_number)->first();
 
          DB::table('rental')
@@ -251,14 +256,6 @@ class UserController extends Controller
         $data["plan_date"] = $rental->plan_date;
         $data["retun_date"] = $rental->return_date;
 
-        //Trying to get property of non-object yet...
-        /*DB::table('rental')->insert(
-            [
-             'plan_date' => $return_plan_day,
-             'completed' => 1
-             ]
-        );*/
-        // view関数の第２引数に配列を渡す
         return view('item_return', $data);
     } 
 }
