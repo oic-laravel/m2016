@@ -24,13 +24,14 @@ Route::get('/', function () {
 
 Route::get('/mail', function(){
  
-	// 現状はわたすデータがないのでエンプティーアレイをわたします
-	$data = [];
-	Mail::send('emails.text', $data, function($message){
-		$message->to('kutuzov1228@gmail.com')
-						->subject('ここがタイトルです');
-	});
- 
+ // 現状はわたすデータがないのでエンプティーアレイをわたします
+ $data = [];
+ Mail::send('emails.text', $data, function($message){
+  $message->to('kutuzov1228@gmail.com', 'hide')
+    ->from('b4236@oic.jp', 'takezoe')
+    ->subject('ここがタイトルです');
+ });
+
 });
 Route::post('/bar', 'UserController@showBarcode');
 
