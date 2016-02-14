@@ -261,7 +261,7 @@ class UserController extends Controller
              ]
         );
         // view関数の第２引数に配列を渡す
-        return view('student_registration');
+        return view('student_registration')->with('student_number',$student_number)->with('student_name',$student_name);
     }
 
       /**
@@ -348,5 +348,53 @@ class UserController extends Controller
             return $result1;//error
         }
         return view('/delete_complete')->with('item_number',$item_number);
+    }
+
+        /**
+    * insert item name to pullbox
+    *
+    * URI : GET /teacher_registration
+    * @author hisashi
+    * @return void
+    */
+    public function storeTeacher()
+    {
+
+
+        $teacher_name = Input::get('teacher-name');
+        $teacher_email = Input::get('teacher-email');
+
+
+        DB::table('teacher')->insert(
+            ['teacher_name' => $teacher_name,
+             'teacher_email' => $teacher_email,
+             ]
+        );
+        // view関数の第２引数に配列を渡す
+        return view('teacher_registration')->with('teacher_name',$teacher_name)->with('teacher_email',$teacher_email);
+    }
+
+
+        /**
+    * insert item name to pullbox
+    *
+    * URI : GET /email_change
+    * @author hisashi
+    * @return void
+    */
+    public function storeChangeEmail()
+    {
+
+
+        $teacher_name = Input::get('teacher-name');
+        $teacher_email = Input::get('teacher-email');
+
+
+         DB::table('teacher')
+            ->where('teacher_name', '=', $teacher_name)
+            ->update(['teacher_email' => $teacher_email
+                ]);
+        // view関数の第２引数に配列を渡す
+        return view('email_change_complete')->with('teacher_name',$teacher_name)->with('teacher_email',$teacher_email);
     }
 }

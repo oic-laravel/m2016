@@ -27,10 +27,12 @@ Route::get('/delete_item',function(){
 	});
 
 
+Route::get('/teacher_registration_form',function(){
+	return view('teacher_registration_form');
+});
+
 Route::get('/mail', function(){
  
-
-
 	// 現状はわたすデータがないのでエンプティーアレイをわたします
 	$data = [];
 	Mail::send('emails.text', $data, function($message){
@@ -49,6 +51,10 @@ Route::post('/barcode', function () {
 
 Route::get('/index', function () {
     return view('/index');
+});
+
+Route::get('/teacher_email_change', function(){
+	return view('/teacher_email_change');
 });
 
 Route::get('/student_registration_form', 'UserController@showStudentForm');
@@ -76,6 +82,10 @@ Route::post('/registration', 'UserController@storeRental');
 Route::post('/item_registration', 'UserController@storeItem');
 
 Route::post('/delete_complete', 'UserController@showItemDelete');
+
+Route::post('/teacher_registration', 'UserController@storeTeacher');
+
+Route::post('/email_change','UserController@storeChangeEmail');
 
 /*
 |--------------------------------------------------------------------------

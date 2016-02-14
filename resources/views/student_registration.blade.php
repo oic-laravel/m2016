@@ -17,6 +17,8 @@
                 <a class="navbar-brand" href="/item_list">貸出品一覧</a>
                 <a class="navbar-brand" href="/item_return_form">返却</a>
                 <a class="navbar-brand" href="/delete_item">貸出品削除</a>
+                <a class="navbar-brand" href="/teacher_registration_form">教員登録</a>
+                <a class="navbar-brand" href="/teacher_email_change">教員メールアドレス変更</a>
             </div>
         </div>
     </nav>
@@ -24,6 +26,7 @@
   <div class="container" style="margin-top:100px; padding:20px 0;">
     <h1 class="text-center">生徒登録が完了しました。</h1>
     <h2 class="text-center">登録は初回のみです。</h2>
+     <h3 class="text-center">学籍番号:<?= $student_number ?><br>生徒氏名:<?= $student_name ?></h>
 
   </div>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha256-KXn5puMvxCw+dAYznun+drMdG1IFl3agK0p/pqT9KAo= sha512-2e8qq0ETcfWRI4HJBzQiA3UoyFk6tbNyG+qSaIBZLyW9Xf3sWZHN/lxe9fTh1U45DpPf07yj94KsUHHWe4Yk1A==" crossorigin="anonymous"></script>
