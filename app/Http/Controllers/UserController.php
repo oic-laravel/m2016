@@ -407,7 +407,7 @@ class UserController extends Controller
         $item_number = Input::get('item-number');
 
         if(!$item_number){
-                $error = "貸出番号が見つかりません"; 
+                $error = "貸出番号の入力がありません"; 
                 return view('error')->with('error',$error);
         }
 
@@ -415,6 +415,10 @@ class UserController extends Controller
         ->where('item_number', $item_number)
         ->select('item_id')
         ->get();
+        if(!$item_result){
+                $error = "貸出番号が見つかりません"; 
+                return view('error')->with('error',$error);
+        }
 
         foreach ($item_result as $id) {
             $item_id = $id->item_id;
