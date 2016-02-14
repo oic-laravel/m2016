@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>返却</title>
+  <title>エラー</title>
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-7s5uDGW3AHqw6xtJmNNtr+OBRJUlgkNJEo78P4b0yRw= sha512-nNo+yCHEyn0smMxSswnf/OnX6/KwJuZTlNZBjauKhTK0c+zT+q5JOCx0UFhXQ6rJR9jg6Es8gPuD2uZcYDLqSw==" crossorigin="anonymous">
   <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
 </head>
@@ -17,6 +17,8 @@
                 <a class="navbar-brand" href="/item_list">貸出品一覧</a>
                 <a class="navbar-brand" href="/item_return_form">返却</a>
                 <a class="navbar-brand" href="/delete_item">貸出品削除</a>
+                <a class="navbar-brand" href="/teacher_registration_form">教員登録</a>
+                <a class="navbar-brand" href="/teacher_email_change">教員メールアドレス変更</a>
             </div>
         </div>
     </nav>
