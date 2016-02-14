@@ -39,6 +39,7 @@
             <th class="text-center">貸出品番号</th>
             <th class="text-center">学籍番号</th>
             <th class="text-center">貸出日付</th>
+            <th class="text-center">返却日付</th>
             <th class="text-center">返却</th>
           </tr>
         </thead>
@@ -51,6 +52,7 @@
                 <td>{{ $row->item_number}}</td>
                 <td>{{ $row->student_number }}</td>
                 <td>{{ $row->rental_date }}</td>
+                <td>{{ $row->plan_date }}</td>
                 <td>{{ $row->completed }}</td>
                 <td>
                 <div style="display:inline-flex">

@@ -31,6 +31,7 @@ Route::get('/teacher_registration_form',function(){
 	return view('teacher_registration_form');
 });
 
+
 Route::get('/mail', function(){
  
 	// 現状はわたすデータがないのでエンプティーアレイをわたします
