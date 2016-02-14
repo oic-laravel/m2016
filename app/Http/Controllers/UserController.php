@@ -23,8 +23,11 @@ class UserController extends Controller
     */
     public function delete($id)
     {
-        DB::table('rental')->where('rental_id', $id)->delete();
-
+        $result = DB::table('rental')->where('rental_id', $id)->delete();
+        if(!$result){
+                $error = "errorが発生しました"; 
+                return view('error')->with('error',$error);
+        }
         return redirect()->to('/lendhistory');
     }
 
@@ -78,14 +81,14 @@ class UserController extends Controller
 		$student_number = Input::get('student-number');
 
         if(!$student_number){
-            $error = "student number is null";
+            $error = "学籍番号の入力がありません";
             return view('error')->with('error',$error);
         }
 
 		$item_number = Input::get('loan-number');
 
         if(!$item_number){
-            $error = "item number is null";
+            $error = "貸出番号の入力がありません";
             return view('error')->with('error',$error);
         }
 
@@ -94,7 +97,7 @@ class UserController extends Controller
         ->where('loaned','=',1)
         ->first();
         if($result){//error! item was loaned.
-            $error = "item number was loaned"; 
+            $error = "すでに借りられています"; 
             return view('error')->with('error',$error);
         }
 
@@ -102,12 +105,12 @@ class UserController extends Controller
 
  		$student = DB::table('student')->where('student_number', '=', $student_number)->first();
         if(!$student){
-            $error = "student is not found"; 
+            $error = "学籍番号が見つかりません"; 
             return view('error')->with('error',$error);
         }
  		$item = DB::table('item')->where('item_number', '=', $item_number)->first();
         if(!$item){
-            $error = "item is not found"; 
+            $error = "貸出番号が見つかりません"; 
             return view('error')->with('error',$error);
         }
  		$data["student_number"] = $student->student_number;
@@ -126,7 +129,6 @@ class UserController extends Controller
         ->where('item_number','=',$item_number)
         ->update(['loaned' => 1]);
 
-        // view関数の第２引数に配列を渡す
     	return view('registration', $data);
 	}
 
@@ -204,7 +206,7 @@ class UserController extends Controller
 
     /**
     * show barcode
-    *
+    * これ使ってる？
     * URI : GET /?
     * @author hide
     * @return array
@@ -247,12 +249,12 @@ class UserController extends Controller
     * @author hisashi
     * @return array
     */
-        public function showStudentForm()
+    public function showStudentForm()
     {
 
         $departments['departments'] = DB::table('department')->get();
         $teachers['teachers'] = DB::table('teacher')->get();
-        // view関数の第２引数に配列を渡す
+
         return view('student_registration_form', $departments,$teachers);
     }
     /**
@@ -262,14 +264,30 @@ class UserController extends Controller
     * @author hisashi
     * @return array
     */
-        public function storeStudent()
+    public function storeStudent()
     {
 
 
         $student_number = Input::get('student-number');
+        if(!$student_number){
+            $error = "学籍番号の入力がありません"; 
+            return view('error')->with('error',$error);
+        }
         $department_id = Input::get('department');
+        if(!$department_id){
+            $error = "学科の入力がありません"; 
+            return view('error')->with('error',$error);
+        }
         $teacher_id = Input::get('teacher');
+        if(!$teacher_id){
+            $error = "担任教師の入力がありません"; 
+            return view('error')->with('error',$error);
+        }
         $student_name = Input::get('student-name');
+        if(!$student_name){
+            $error = "生徒名の入力がありません"; 
+            return view('error')->with('error',$error);
+        }
     
 
         DB::table('student')->insert(
@@ -301,6 +319,10 @@ class UserController extends Controller
 
         $student_number = Input::get('student-number');
         $item_number = Input::get('loan-number');
+        if(!$student_number){
+            $error = "貸出番号の入力がありません"; 
+            return view('error')->with('error',$error);
+        }
         $data = [];
         if(!$student_number){
             DB::table('item')
@@ -308,6 +330,11 @@ class UserController extends Controller
             ->update(['loaned' => 0]);
 
             $item = DB::table('item')->where('item_number', '=', $item_number)->first();
+            
+            if(!$item){
+                $error = "貸出番号が見つかりません"; 
+                return view('error')->with('error',$error);
+            }
 
             DB::table('rental')
             ->where('item_id', '=', $item->item_id)
@@ -324,13 +351,23 @@ class UserController extends Controller
 
         $student = DB::table('student')->where('student_number', '=', $student_number)->first();
 
+        if(!$student){
+                $error = "学籍番号が見つかりません"; 
+                return view('error')->with('error',$error);
+        }
+
         DB::table('item')
         ->where('item_number', '=', $item_number)
         ->update(['loaned' => 0]);
 
         $item = DB::table('item')->where('item_number', '=', $item_number)->first();
 
-         DB::table('rental')
+        if(!$item){
+                $error = "貸出番号が見つかりません"; 
+                return view('error')->with('error',$error);
+        }
+
+        DB::table('rental')
             ->where('student_id', '=', $student->student_id)
             ->where('item_id', '=', $item->item_id)
             ->update(['return_date' => $returned_day,'completed' => 1]);
@@ -359,6 +396,11 @@ class UserController extends Controller
     {
         $item_number = Input::get('item-number');
 
+        if(!$item_number){
+                $error = "貸出番号が見つかりません"; 
+                return view('error')->with('error',$error);
+        }
+
         $item_result = DB::table('item')
         ->where('item_number', $item_number)
         ->select('item_id')
@@ -377,7 +419,8 @@ class UserController extends Controller
         ->where('loaned','=',0)
         ->delete();
         if($result1 == 0 && $result2 == 0){
-            return $result1;//error
+            $error = "errorが発生しました"; 
+                return view('error')->with('error',$error);
         }
         return view('/delete_complete')->with('item_number',$item_number);
     }
@@ -394,14 +437,27 @@ class UserController extends Controller
 
 
         $teacher_name = Input::get('teacher-name');
+        if(!$teacher_name){
+                $error = "担任教師の入力がありません"; 
+                return view('error')->with('error',$error);
+        }
         $teacher_email = Input::get('teacher-email');
+        if(!$teacher_email){
+                $error = "担任教師のメールアドレスの入力がありません"; 
+                return view('error')->with('error',$error);
+        }
 
 
-        DB::table('teacher')->insert(
+        $result = DB::table('teacher')->insert(
             ['teacher_name' => $teacher_name,
              'teacher_email' => $teacher_email,
              ]
         );
+
+        if(!$result){
+                $error = "すでに登録されています"; 
+                return view('error')->with('error',$error);
+        }
         // view関数の第２引数に配列を渡す
         return view('teacher_registration')->with('teacher_name',$teacher_name)->with('teacher_email',$teacher_email);
     }
@@ -419,14 +475,26 @@ class UserController extends Controller
 
 
         $teacher_name = Input::get('teacher-name');
+        if(!$teacher_name){
+                $error = "担任教師の入力がありません"; 
+                return view('error')->with('error',$error);
+        }
         $teacher_email = Input::get('teacher-email');
+        if(!$teacher_email){
+                $error = "担任教師のメールアドレスの入力がありません"; 
+                return view('error')->with('error',$error);
+        }
 
 
-         DB::table('teacher')
+        $result = DB::table('teacher')
             ->where('teacher_name', '=', $teacher_name)
             ->update(['teacher_email' => $teacher_email
                 ]);
-        // view関数の第２引数に配列を渡す
+        if(!$result){
+                $error = "errorが発生しました"; 
+                return view('error')->with('error',$error);
+        }
+
         return view('email_change_complete')->with('teacher_name',$teacher_name)->with('teacher_email',$teacher_email);
     }
 }
