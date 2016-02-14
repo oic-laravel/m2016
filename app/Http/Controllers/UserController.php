@@ -46,7 +46,10 @@ class UserController extends Controller
         ->join('item','rental.item_id','=','item.item_id')
         ->select('rental.rental_id','rental.student_id','student.student_name','student.student_email','rental.item_id','item.item_name')
         ->where('rental.rental_id', '=', $id)->first();
-
+        if(!$data){
+                $error = "errorが発生しました"; 
+                return view('error')->with('error',$error);
+        }
         $student_email = $data->student_email;
         $student_name = $data->student_name;
         $subject = 'oicrentalの貸し出し品について';
@@ -79,14 +82,12 @@ class UserController extends Controller
 
 
 		$student_number = Input::get('student-number');
-
         if(!$student_number){
             $error = "学籍番号の入力がありません";
             return view('error')->with('error',$error);
         }
 
 		$item_number = Input::get('loan-number');
-
         if(!$item_number){
             $error = "貸出番号の入力がありません";
             return view('error')->with('error',$error);
@@ -108,15 +109,17 @@ class UserController extends Controller
             $error = "学籍番号が見つかりません"; 
             return view('error')->with('error',$error);
         }
+
  		$item = DB::table('item')->where('item_number', '=', $item_number)->first();
         if(!$item){
             $error = "貸出番号が見つかりません"; 
             return view('error')->with('error',$error);
         }
+
  		$data["student_number"] = $student->student_number;
  		$data["item_name"] = $item->item_name;
  		//Trying to get property of non-object yet...
- 		DB::table('rental')->insert(
+ 		$result = DB::table('rental')->insert(
     		['student_id' => $student->student_id,
     		 'item_id' => $item->item_id,
     		 'rental_date' => $today,
@@ -124,10 +127,18 @@ class UserController extends Controller
     		 'completed' => 0
     		 ]
 		);
+        if(!$result){
+                $error = "errorが発生しました"; 
+                return view('error')->with('error',$error);
+        }
 
-        DB::table('item')
+        $result = DB::table('item')
         ->where('item_number','=',$item_number)
         ->update(['loaned' => 1]);
+        if(!$result){
+                $error = "errorが発生しました"; 
+                return view('error')->with('error',$error);
+        }
 
     	return view('registration', $data);
 	}
@@ -154,6 +165,7 @@ class UserController extends Controller
                                         group by item2.item_name
                             ) as item_loaned
                         on base.item_name = item_loaned.item_name');
+
         return View::make('/item_list',$data);
     }
 
@@ -182,9 +194,9 @@ class UserController extends Controller
     */
     public function storeItem()
     {
-        DB::table('item')->insert(
+        $result = DB::table('item')->insert(
             ['item_name' => Input::get('item'),
-             'remarks' => "test"
+             'remarks' => "test"//入力した値を受け取るー未実装
              ]);
 
         $id = DB::getPdo()->lastInsertId();
