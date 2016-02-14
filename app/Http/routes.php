@@ -53,6 +53,10 @@ Route::get('/index', function () {
     return view('/index');
 });
 
+Route::get('/error', function () {
+    return view('/error');
+});
+
 Route::get('/teacher_email_change', function(){
 	return view('/teacher_email_change');
 });
