@@ -284,8 +284,20 @@ class UserController extends Controller
         $data = [];
         if(!$student_number){
             DB::table('item')
-            >where('item_number', '=', $item_number)
+            ->where('item_number', '=', $item_number)
             ->update(['loaned' => 0]);
+
+            $item = DB::table('item')->where('item_number', '=', $item_number)->first();
+            
+            DB::table('rental')
+            ->where('item_id', '=', $item->item_id)
+            ->update(['return_date' => $returned_day,'completed' => 1]);
+
+            $data["student_number"] = "";
+            $data["item_name"] = $item_number;
+            $data["plan_date"] = "";
+            $data["retun_date"] = "";
+            
             return view('item_return', $data);;
         }
         $data = [];
