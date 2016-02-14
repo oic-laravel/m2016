@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>貸出システム</title>
+  <title>生徒登録</title>
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-7s5uDGW3AHqw6xtJmNNtr+OBRJUlgkNJEo78P4b0yRw= sha512-nNo+yCHEyn0smMxSswnf/OnX6/KwJuZTlNZBjauKhTK0c+zT+q5JOCx0UFhXQ6rJR9jg6Es8gPuD2uZcYDLqSw==" crossorigin="anonymous">
   <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
 </head>
@@ -17,24 +17,24 @@
                 <a class="navbar-brand" href="/item_list">貸出品一覧</a>
                 <a class="navbar-brand" href="/item_return_form">返却</a>
                 <a class="navbar-brand" href="/delete_item">貸出品削除</a>
-                <a class="navbar-brand" href="/teacher_registration_form">教員登録</a>
             </div>
         </div>
     </nav>
   </header>
   <div class="container" style="margin-top:100px; padding:20px 0;">
-    <h1 class="text-center">登録フォーム</h1>
-    <form class="form-horizontal col-md-4 col-md-offset-4" action="/registration" method="POST">
+    <h1 class="text-center">教員登録</h1>
+    <form class="form-horizontal col-md-4 col-md-offset-4" action="teacher_registration" method="POST">
       <div class="form-group">
-        <label class="control-label" for="student-number">学籍番号</label>
-        <div >
-          <input type="text" id="student-number" name="student-number" class="form-control">
+        <label class="control-label">教員名</label>
+        <div>
+        <input type="text" name="teacher-name" size="20"  /><br />
         </div>
       </div>
-      <div class="form-group">
-        <label class="control-label" for="loan-number">貸出番号</label>
+
+          <div class="form-group">
+        <label class="control-label">教員メールアドレス</label>
         <div>
-          <input type="text" id="loan-number" name="loan-number" class="form-control">
+        <input type="text" name="teacher-email" size="30" /><br />
         </div>
       </div>
       <div class="form-group">
@@ -42,7 +42,7 @@
           <button type="submit" class="btn btn-primary btn-block">登録</button>
         </div>
       </div>
-    </form>
+  </form>
   </div>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha256-KXn5puMvxCw+dAYznun+drMdG1IFl3agK0p/pqT9KAo= sha512-2e8qq0ETcfWRI4HJBzQiA3UoyFk6tbNyG+qSaIBZLyW9Xf3sWZHN/lxe9fTh1U45DpPf07yj94KsUHHWe4Yk1A==" crossorigin="anonymous"></script>
 </body>
