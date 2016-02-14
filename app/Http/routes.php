@@ -53,6 +53,10 @@ Route::get('/index', function () {
     return view('/index');
 });
 
+Route::get('/teacher_email_change', function(){
+	return view('/teacher_email_change');
+});
+
 Route::get('/student_registration_form', 'UserController@showStudentForm');
 
 Route::post('/student_registration', 'UserController@storeStudent');
@@ -80,6 +84,8 @@ Route::post('/item_registration', 'UserController@storeItem');
 Route::post('/delete_complete', 'UserController@showItemDelete');
 
 Route::post('/teacher_registration', 'UserController@storeTeacher');
+
+Route::post('/email_change','UserController@storeChangeEmail');
 
 /*
 |--------------------------------------------------------------------------
