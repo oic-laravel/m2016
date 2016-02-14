@@ -22,17 +22,16 @@
         </div>
     </nav>
   </header>
-  <div class="container">
+  <div class="container" style="margin-top:100px; padding:20px 0;">
 
     <!-- header -->
-    <div id="header" >貸出品削除</div>
 
     <!-- main -->
         <form class="col-md-4 col-md-offset-4" action="delete_complete" method="POST">
 
       <!-- apply custom style -->
       <div class="form-group">
-    <h1 class="text-center">貸出品削除</h1>
+        <h1 class="text-center">貸出品削除</h1>
         <div >
           <label class="control-label" >貸出品番号</label>
           <input type="text" id="number" name="item-number" class="form-control">
