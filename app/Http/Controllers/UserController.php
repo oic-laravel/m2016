@@ -282,6 +282,13 @@ class UserController extends Controller
         $student_number = Input::get('student-number');
         $item_number = Input::get('loan-number');
         $data = [];
+        if(!$student_number){
+            DB::table('item')
+            >where('item_number', '=', $item_number)
+            ->update(['loaned' => 0]);
+            return view('item_return', $data);;
+        }
+        $data = [];
 
         $student = DB::table('student')->where('student_number', '=', $student_number)->first();
 
@@ -320,8 +327,26 @@ class UserController extends Controller
     {
         $item_number = Input::get('item-number');
 
-        DB::table('item')->where('item_number', $item_number)->delete();
+        $item_result = DB::table('item')
+        ->where('item_number', $item_number)
+        ->select('item_id')
+        ->get();
 
+        foreach ($item_result as $id) {
+            $item_id = $id->item_id;
+        }
+        $result1 = DB::table('rental')
+        ->where('item_id','=', $item_id)
+        ->where('completed','=',1)
+        ->delete();
+
+        $result2 = DB::table('item')
+        ->where('item_number', $item_number)
+        ->where('loaned','=',0)
+        ->delete();
+        if($result1 == 0 && $result2 == 0){
+            return $result1;//error
+        }
         return view('/delete_complete')->with('item_number',$item_number);
     }
 }

@@ -23,10 +23,12 @@
   </header>
   <div class="container" style="margin-top:100px; padding:20px 0;">
     <h1 class="text-center">返却処理が完了しました。</h1>
-    学籍番号 <?= $student_number ?>.<br>
-    貸出品 <?= $item_name ?>. 
-    返却予定日 <?= $plan_date ?>.
-    返却日 <?= $retun_date ?>.
+    @if ($student_number)
+      学籍番号 <?= $student_number ?>.<br>
+      貸出品 <?= $item_name ?>. 
+      返却予定日 <?= $plan_date ?>.
+      返却日 <?= $retun_date ?>.
+    @endif
   </div>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha256-KXn5puMvxCw+dAYznun+drMdG1IFl3agK0p/pqT9KAo= sha512-2e8qq0ETcfWRI4HJBzQiA3UoyFk6tbNyG+qSaIBZLyW9Xf3sWZHN/lxe9fTh1U45DpPf07yj94KsUHHWe4Yk1A==" crossorigin="anonymous"></script>
 </body>
