@@ -22,8 +22,15 @@ Route::get('/', function () {
     return view('index');
 });
 
+Route::get('/delete_item',function(){
+	return view('delete_item');
+	});
+
+
 Route::get('/mail', function(){
  
+
+
 	// 現状はわたすデータがないのでエンプティーアレイをわたします
 	$data = [];
 	Mail::send('emails.text', $data, function($message){
@@ -31,6 +38,7 @@ Route::get('/mail', function(){
 				->from('oicrental@gmail.com', 'oicrental')
 				->subject('hidehide');
 	});
+
 });
 Route::post('/bar', 'UserController@showBarcode');
 
@@ -66,6 +74,8 @@ Route::post('/lendhistory/sendMail/{id}','UserController@sendMail');
 Route::post('/registration', 'UserController@storeRental');
 
 Route::post('/item_registration', 'UserController@storeItem');
+
+Route::post('/delete_complete', 'UserController@showItemDelete');
 
 /*
 |--------------------------------------------------------------------------
