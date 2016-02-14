@@ -76,20 +76,40 @@ class UserController extends Controller
 
 
 		$student_number = Input::get('student-number');
+
+        if(!$student_number){
+            $error = "student number is null";
+            return view('error')->with('error',$error);
+        }
+
 		$item_number = Input::get('loan-number');
+
+        if(!$item_number){
+            $error = "item number is null";
+            return view('error')->with('error',$error);
+        }
 
         $result=DB::table('item')
         ->where('item_number','=',$item_number)
         ->where('loaned','=',1)
         ->first();
-        if($result){//error! item was loaned. 
-            return view('index');
+        if($result){//error! item was loaned.
+            $error = "item number was loaned"; 
+            return view('error')->with('error',$error);
         }
 
 		$data = [];
 
  		$student = DB::table('student')->where('student_number', '=', $student_number)->first();
+        if(!$student){
+            $error = "student is not found"; 
+            return view('error')->with('error',$error);
+        }
  		$item = DB::table('item')->where('item_number', '=', $item_number)->first();
+        if(!$item){
+            $error = "item is not found"; 
+            return view('error')->with('error',$error);
+        }
  		$data["student_number"] = $student->student_number;
  		$data["item_name"] = $item->item_name;
  		//Trying to get property of non-object yet...
@@ -288,7 +308,7 @@ class UserController extends Controller
             ->update(['loaned' => 0]);
 
             $item = DB::table('item')->where('item_number', '=', $item_number)->first();
-            
+
             DB::table('rental')
             ->where('item_id', '=', $item->item_id)
             ->update(['return_date' => $returned_day,'completed' => 1]);
