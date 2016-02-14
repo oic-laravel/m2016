@@ -28,8 +28,8 @@ Route::get('/mail', function(){
 	$data = [];
 	Mail::send('emails.text', $data, function($message){
 		$message->to('kutuzov1228@gmail.com', 'hide')
-				->from('b4236@oic.jp', 'takezoe')
-				->subject('ここがタイトルです');
+				->from('oicrental@gmail.com', 'oicrental')
+				->subject('hidehide');
 	});
 });
 Route::post('/bar', 'UserController@showBarcode');
@@ -60,6 +60,8 @@ Route::post('/item_return','UserController@Restore');
 Route::get('/lendhistory', 'UserController@showHistory');
 
 Route::post('/lendhistory/delete/{id}','UserController@delete');
+
+Route::post('/lendhistory/sendMail/{id}','UserController@sendMail');
 
 Route::post('/registration', 'UserController@storeRental');
 
