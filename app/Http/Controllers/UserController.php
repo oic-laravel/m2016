@@ -9,6 +9,7 @@ use DB;
 use View;
 // use BaseController;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Mail;
 
 class UserController extends Controller
 {
@@ -25,6 +26,39 @@ class UserController extends Controller
         DB::table('rental')->where('rental_id', $id)->delete();
 
         return redirect()->to('/lendhistory');
+    }
+
+    /**
+    * send mail
+    *
+    * URI : POST /lendhistory/delete/{id}
+    * @param array $id
+    * @author hide
+    * @return App\Http\Controllers\UserController@showHistory
+    */
+    public function sendMail($id)
+    {
+        $data = DB::table('rental')
+        ->join('student','rental.student_id','=','student.student_id')
+        ->join('item','rental.item_id','=','item.item_id')
+        ->select('rental.rental_id','rental.student_id','student.student_name','student.student_email','rental.item_id','item.item_name')
+        ->where('rental.rental_id', '=', $id)->first();
+
+        $student_email = $data->student_email;
+        $student_name = $data->student_name;
+        $subject = 'oicrentalの貸し出し品について';
+        $from_mail = 'oicrental@gmail.com';
+        $from_name = 'oicrental';
+
+        Mail::send('emails.text', array('email' => $data), function($message) use($student_email, $student_name,$subject,$from_mail,$from_name){
+
+        $message->to($student_email,$student_name)
+                ->from($from_mail, $from_name)
+                ->subject($subject);
+        });
+
+        
+        return view('send_mail_completed')->with('student_name',$student_name);
     }
 
     /**

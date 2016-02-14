@@ -52,7 +52,7 @@
                 <td>{{ $row->completed }}</td>
                 <td>
                 <div style="display:inline-flex">
-                  <form class="form-horizontal" action="#" method="POST">
+                  <form class="form-horizontal" action="/lendhistory/sendMail/{{$row->rental_id}}" method="POST">
                     <input type="submit" class="btn btn-primary btn-xs" value="メール送信" style="margin-right: 10px">
                   </form>
                   <form class="form-horizontal" method="post" action="/lendhistory/delete/{{$row->rental_id}}">

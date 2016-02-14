@@ -5,6 +5,14 @@
 	<title>Laravelでメール送信</title>
 </head>
 <body>
-	メール送信しました( ◜◡‾)
+		{{$email->student_email}}さん
+		<br>
+		{{$email->item_name}}
+		について
+		<br>
+		まだ返却がされていませんので
+		<br>
+		はやく返しにきやがれ
+
 </body>
 </html>
