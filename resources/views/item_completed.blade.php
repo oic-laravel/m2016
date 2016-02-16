@@ -35,13 +35,11 @@
     このページをプリントアウトしてバーコードを貸出品に貼り付けてください。<br>
     紙は厳重に保管してください。
     </div>
-    <br>
-    <div class="col-md-4 col-md-offset-4" style="margin-top:100px">
-    ----------------------------------------------------------<br>
-    <br>
-    <?= $barcode ?><br>
-    {{ $row->item_number}}<br>
-    ----------------------------------------------------------
+    <div class="col-md-4 col-md-offset-4" style="margin-top:100px; padding-top: 10px; border-style: dashed none dashed none;">
+
+    <p class="text-center"><?= $barcode ?></p>
+    <p class="text-center">{{ $row->item_number}}</p>
+
     </div>
   </div>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha256-KXn5puMvxCw+dAYznun+drMdG1IFl3agK0p/pqT9KAo= sha512-2e8qq0ETcfWRI4HJBzQiA3UoyFk6tbNyG+qSaIBZLyW9Xf3sWZHN/lxe9fTh1U45DpPf07yj94KsUHHWe4Yk1A==" crossorigin="anonymous"></script>

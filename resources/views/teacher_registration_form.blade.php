@@ -29,14 +29,14 @@
       <div class="form-group">
         <label class="control-label">教員名</label>
         <div>
-        <input type="text" name="teacher-name" size="20"  /><br />
+        <input type="text" name="teacher-name" class="form-control">
         </div>
       </div>
 
           <div class="form-group">
         <label class="control-label">教員メールアドレス</label>
         <div>
-        <input type="text" name="teacher-email" size="30" /><br />
+        <input type="text" name="teacher-email" class="form-control">
         </div>
       </div>
       <div class="form-group">

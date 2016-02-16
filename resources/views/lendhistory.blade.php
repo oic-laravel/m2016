@@ -24,13 +24,10 @@
         </div>
     </nav>
   </header>
-  <div class="container">
-
-    <!-- header -->
-    <div id="header" >貸出履歴一覧</div>
 
     <!-- main -->
     <div class="container">
+    <h2 class="text-center" style="margin-bottom: 30px;">貸出履歴一覧</h2>
       <!-- apply custom style -->
       <table class="text-center table table-striped table-hover">
         <thead>

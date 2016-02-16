@@ -26,19 +26,19 @@
   <div class="container" style="margin-top:100px; padding:20px 0;">
     <h1 class="text-center">生徒登録</h1>
     <form class="form-horizontal col-md-4 col-md-offset-4" action="student_registration" method="POST">
-      <div class="form-group">
-        <label class="control-label">学籍番号</label>
-        <div>
-        <input type="text" name="student-number" size="10" value="" /><br />
-        </div>
+    <div class="form-group">
+      <label class="control-label" for="student-number">学籍番号</label>
+      <div >
+        <input type="text" id="student-number" name="student-number" class="form-control">
       </div>
+    </div>
 
-          <div class="form-group">
-        <label class="control-label">氏名</label>
-        <div>
-        <input type="text" name="student-name" size="15" value="" /><br />
-        </div>
+    <div class="form-group">
+      <label class="control-label" for="student-name">氏名</label>
+      <div >
+        <input type="text" id="student-name" name="student-name" class="form-control">
       </div>
+    </div>
 
 
       <div class="form-group">

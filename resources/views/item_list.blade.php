@@ -24,11 +24,9 @@
   </header>
   <div class="container">
 
-    <!-- header -->
-    <div id="header" >貸出品一覧</div>
-
     <!-- main -->
-    <div class="col-md-9">
+    <div class="container">
+    <h2 class="text-center" style="margin-bottom: 30px;">貸出品一覧</h2>
       <!-- apply custom style -->
       <table class="table table-striped table-hover">
         <thead>

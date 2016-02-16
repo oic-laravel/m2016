@@ -486,8 +486,6 @@ class UserController extends Controller
     */
     public function storeChangeEmail()
     {
-
-
         $teacher_name = Input::get('teacher-name');
         if(!$teacher_name){
                 $error = "担任教師の入力がありません"; 
