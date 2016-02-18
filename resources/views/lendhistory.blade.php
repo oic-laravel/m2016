@@ -28,7 +28,11 @@
                 <td>{{ $row->student_number }}</td>
                 <td>{{ $row->rental_date }}</td>
                 <td>{{ $row->plan_date }}</td>
-                <td>{{ $row->completed }}</td>
+                @if($row->return_date == '0000-00-00')
+                <td>未返却</td>
+                @else
+                <td>{{ $row->return_date }}</td>
+                @endif
                 <td>
                 <div style="display:inline-flex">
                   <form class="form-horizontal" action="/lendhistory/sendMail/{{$row->rental_id}}" method="POST">

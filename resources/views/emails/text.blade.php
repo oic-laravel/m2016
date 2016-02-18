@@ -6,6 +6,7 @@
 </head>
 <body>
 		oic-rentalです
+		<br>
 		{{$email->student_email}}さん
 		<br>
 		{{$email->item_name}}
@@ -13,7 +14,6 @@
 		<br>
 		まだ返却がされていませんので
 		<br>
-		はやく返しにきてください！
-
+		至急、返しに来てください！
 </body>
 </html>

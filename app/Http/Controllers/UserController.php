@@ -7,7 +7,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use DB;
 use View;
-// use BaseController;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Mail;
 
@@ -244,7 +244,7 @@ class UserController extends Controller
         $data['lendhistory']=DB::table('rental')
         ->join('item', 'rental.item_id', '=', 'item.item_id')
         ->join('student', 'rental.student_id', '=', 'student.student_id')     
-        ->select('rental.rental_id', 'item.item_name', 'student.student_number','rental.completed','rental_date','item.item_number', 'rental.plan_date')
+        ->select('rental.rental_id', 'item.item_name', 'student.student_number','rental.return_date','rental_date','item.item_number', 'rental.plan_date')
         ->orderBy('rental.plan_date', 'asc')
         ->paginate(10);
 
