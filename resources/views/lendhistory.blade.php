@@ -14,7 +14,7 @@
             <th class="text-center">貸出品番号</th>
             <th class="text-center">学籍番号</th>
             <th class="text-center">貸出日付</th>
-            <th class="text-center">返却日付</th>
+            <th class="text-center">返却予定日</th>
             <th class="text-center">返却</th>
           </tr>
         </thead>
