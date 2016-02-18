@@ -5,6 +5,7 @@
 	<title>Laravelでメール送信</title>
 </head>
 <body>
+		oic-rentalです
 		{{$email->student_email}}さん
 		<br>
 		{{$email->item_name}}
@@ -12,7 +13,7 @@
 		<br>
 		まだ返却がされていませんので
 		<br>
-		はやく返しにきやがれ
+		はやく返しにきてください！
 
 </body>
 </html>
