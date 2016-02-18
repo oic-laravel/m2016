@@ -12,7 +12,7 @@
     <div class="form-group">
       <label class="control-label" for="student-number">学籍番号</label>
       <div >
-        <input type="text" id="student-number" name="student-number" class="form-control">
+        <input type="text" id="student-number" name="student-number" class="form-control" autofocus>
       </div>
     </div>
 

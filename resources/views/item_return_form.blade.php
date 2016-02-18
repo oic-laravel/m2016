@@ -11,7 +11,7 @@
       <div class="form-group">
         <label class="control-label" for="student-number">学籍番号</label>
         <div >
-          <input type="text" id="student-number" name="student-number" class="form-control">
+          <input type="text" id="student-number" name="student-number" class="form-control" autofocus>
         </div>
       </div>
       <div class="form-group">
@@ -27,4 +27,12 @@
       </div>
     </form>
   </div>
+  <script>
+$('input[name=loan-number]').on('keydown', function(e) {
+    if (e.keyCode == 9) {
+        e.preventDefault();
+        document.forms[0].submit()
+    }
+});
+</script>
 @endsection

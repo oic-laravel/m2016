@@ -11,7 +11,7 @@
       <div class="form-group">
         <label class="control-label">教員名</label>
         <div>
-        <input type="text" name="teacher-name" class="form-control">
+        <input type="text" name="teacher-name" class="form-control" autofocus>
         </div>
       </div>
 
@@ -28,4 +28,12 @@
       </div>
   </form>
   </div>
+  <script>
+$('input[name=teacher-email]').on('keydown', function(e) {
+    if (e.keyCode == 9) {
+        e.preventDefault();
+        document.forms[0].submit()
+    }
+});
+</script>
 @endsection

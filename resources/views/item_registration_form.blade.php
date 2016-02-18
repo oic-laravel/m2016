@@ -29,7 +29,7 @@
       <div class="form-group">
         <label class="control-label">新しいアイテム</label>
         <div>
-          <input type="text" id="new-item" name="item" class="form-control">
+          <input type="text" id="new-item" name="item" class="form-control" autofocus>
         </div>
       </div>
       <div class="form-group">
