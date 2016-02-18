@@ -24,4 +24,12 @@
     </div>
   </div>
   </form>
+  <script>
+$('input[name=item-number]').on('keydown', function(e) {
+    if (e.keyCode == 9) {
+        e.preventDefault();
+        document.forms[0].submit()
+    }
+});
+</script>
 @endsection
